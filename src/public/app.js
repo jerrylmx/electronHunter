@@ -1,0 +1,40 @@
+require.config({
+    paths: {
+        'jQuery': 'lib/jquery-3.4.1.min',
+        'Phaser': 'lib/phaser',
+        'socketio': 'lib/socket.io',
+        'scenePrompt': 'scenes/gameScenePrompt',
+        'sceneMain': 'scenes/gameSceneMain',
+        'sceneMain': 'scenes/gameSceneMain',
+        'mdiff': 'lib/mdiff',
+        'probeRender': 'renders/probeRender',
+        'chargeRender': 'renders/chargeRender',
+        'bulletRender': 'renders/bulletRender',
+        'renderFactory': 'utils/renderUtils'
+    },
+    shim: {
+        'jQuery': {
+            exports: '$'
+        }
+    }
+});
+
+require(['jQuery', 'Phaser', 'socketio', 'scenePrompt', 'sceneMain'],
+    function ($, Phaser, socketio, GameScenePrompt, GameSceneMain) {
+    window.socket = socketio();
+    const config = {
+        type: Phaser.AUTO,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        scale: {
+            mode: Phaser.Scale.FIT,
+            autoCenter: Phaser.Scale.CENTER_BOTH
+        },
+        scene: [GameScenePrompt, GameSceneMain],
+        parent: "game",
+        antialias: true
+    };
+    const game = new Phaser.Game(config);
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    console.log("Loaded");
+});
