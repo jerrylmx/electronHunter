@@ -21,11 +21,13 @@ class EntityControlService {
 
     spawnCharge() {
         setInterval(() => {
-            let id = ++this.seq;
-            let spawnLocation = SpawnService.getSpawnLocation();
-            let cfg = {...spawnLocation, id: id};
-            let charge = new Charge(cfg);
-            Globals.entities[id] = charge;
+            if (Object.keys(Globals.entities).length < 100) {
+                let id = ++this.seq;
+                let spawnLocation = SpawnService.getSpawnLocation();
+                let cfg = {...spawnLocation, id: id};
+                let charge = new Charge(cfg);
+                Globals.entities[id] = charge;
+            }
         }, 1000)
     }
 
