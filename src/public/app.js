@@ -1,10 +1,9 @@
 require.config({
     paths: {
         'jQuery': 'lib/jquery-3.4.1.min',
-        'Phaser': 'lib/phaser',
+        'Phaser': 'lib/phaser.min',
         'socketio': 'lib/socket.io',
         'scenePrompt': 'scenes/gameScenePrompt',
-        'sceneMain': 'scenes/gameSceneMain',
         'sceneMain': 'scenes/gameSceneMain',
         'mdiff': 'lib/mdiff',
         'probeRender': 'renders/probeRender',

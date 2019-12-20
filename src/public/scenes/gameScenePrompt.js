@@ -32,8 +32,8 @@ define(['jQuery', 'Phaser'], function($, Phaser){
             });
 
             // Game start
-            window.socket.on("game.resp.init", function(data) {
-                self.scene.start("Main", data);
+            window.socket.on("game.resp.init", function() {
+                self.scene.start("Main");
             });
         }
     }

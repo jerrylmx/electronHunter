@@ -13,7 +13,7 @@ const Engine = Matter.Engine;
 const Wall = require("./models/game/wall");
 
 
-
+let clients = {};
 app.use(express.static(__dirname + "/public"));
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/public/index.html");
@@ -21,16 +21,19 @@ app.get("/", function (req, res) {
 
 io.on('connection', function(socket) {
     console.log('Player connected');
+    clients[socket.id] = socket;
 
     // {id: ...}
     socket.on("disconnect", () => {
         IoController.gameUnregister({id: socket.id});
+        delete clients[socket.id];
     });
 
     // {id: ..., name: ..., color: ...}
     socket.on("game.join", (data) => {
         IoController.gameJoin(data);
-        socket.emit("game.resp.init", Globals.packFrameData());
+        socket.emit("game.resp.init", Globals.packFrameData(socket.id));
+
     });
 
     // { id: ..., direction: ..., rotation: ...}
@@ -54,7 +57,9 @@ setInterval(function () {
     Object.keys(Globals.entities).forEach((key) => {
         Globals.entities[key].sync();
     });
-    io.sockets.emit("game.resp.sync", Globals.packFrameData());
+    Object.keys(clients).forEach((id) => {
+        clients[id].emit("game.resp.sync", Globals.packFrameData(id));
+    })
 }, Globals.SERVER_RATE);
 
 // Server state logging

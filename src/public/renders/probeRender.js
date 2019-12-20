@@ -19,7 +19,11 @@ define([], function() {
             shadow.alpha = 0.3;
             shadow.setScale(0.12);
 
-            let name = scene.add.text(0, -55, probeData.name, { fontFamily: '"Verdana"' });
+            let name = scene.add.text(0, -55, probeData.name, {
+                fontFamily: '"Verdana"',
+                strokeThickness: 1
+            });
+            name.setAlpha(0.8);
             name.setOrigin(0.5);
 
             // HP

@@ -3,10 +3,31 @@ const Bodies = Matter.Bodies;
 const World = Matter.World;
 
 class Globals {
-    static packFrameData() {
-        return {
-            entities: Globals.entities
+    static packFrameData(id) {
+        if (!Globals.entities[id]) {
+            return {
+                entities: Globals.entities
+            }
         }
+        let frame = {
+            entities: {}
+        }
+        let center = {x: Globals.entities[id].x, y: Globals.entities[id].y};
+        Object.keys(Globals.entities).forEach((key) => {
+            let target = Globals.entities[key];
+            if (target && target.x && target.y)  {
+                let dist = Globals.dist(center, target);
+                if (dist < 1000) {
+                    frame.entities[key] = target;
+                }
+            }
+        });
+
+        return frame;
+    }
+
+    static dist(a, b) {
+        return Math.sqrt(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2));
     }
 }
 Globals.engine = Matter.Engine.create();
