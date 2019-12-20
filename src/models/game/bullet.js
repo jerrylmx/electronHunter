@@ -52,7 +52,7 @@ class Bullet {
                 let kid = this.id.split('*****')[0];
                 let killer = Globals.entities[kid];
                 console.log(kid);
-                killer && killer.kills++;
+                killer && body.charge < 10 && killer.kills++;
                 break;
             case "ChargeRender":
                 this.destroy();

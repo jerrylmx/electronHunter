@@ -1,8 +1,8 @@
 define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory'],
     function($, Phaser, Mdiff, ProbeRender, RenderFactory){
     const GAME_SYNC = 'game.resp.sync';
-    const W = 10000;
-    const H = 10000;
+    const W = 1000;
+    const H = 1000;
     const PTR_DEBOUNCE_TIME = 50;
     const GAME_CTRL_PTR = "game.move";
     const GAME_FIRE = 'game.fire';
