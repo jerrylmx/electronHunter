@@ -28,6 +28,13 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory'],
 
         create(frameInit) {
             var that = this;
+
+            // stats
+            that.stamp = new Date().getTime();
+            that.count = 0;
+            that.avg = 0;
+            that.hist = [0, 0, 0, 0, 0];
+
             that.leftDown = false;
             that.rightDown = false;
             that.pointerLocked = false;
@@ -39,6 +46,26 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory'],
 
             that.mdiff = new Mdiff({});
             window.socket.on(GAME_SYNC, function (data) {
+
+                that.count++;
+                let gap = new Date().getTime() - that.stamp;
+                that.avg = (that.avg * (that.count - 1) + gap) / that.count;
+                if (gap < 35) {
+                    that.hist[0]++;
+                } else if (gap < 45) {
+                    that.hist[1]++;
+                } else if (gap < 55) {
+                    that.hist[2]++;
+                } else if (gap < 65) {
+                    that.hist[3]++;
+                } else {
+                    that.hist[4]++;
+                }
+                that.stamp = new Date().getTime();
+                if (that.count % 20 === 0) {
+                    console.log(`avg: ${that.avg}, hist: ${that.hist}`);
+                }
+
                 that.mdiff.refresh(data.entities);
 
                 let diff = that.mdiff.diff();
