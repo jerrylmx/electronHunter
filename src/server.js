@@ -76,5 +76,3 @@ Globals.entities["botWall"] = new Wall({id: "botWall", type: "B"});
 Globals.entities["leftWall"] = new Wall({id: "leftWall", type: "L"});
 Globals.entities["rightWall"] = new Wall({id: "rightWall", type: "R"});
 
-console.log(process.env.SERVER_RATE);
-
