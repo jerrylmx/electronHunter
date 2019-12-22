@@ -17,7 +17,7 @@ class Globals {
             let target = Globals.entities[key];
             if (target && target.x && target.y)  {
                 let dist = Globals.dist(center, target);
-                if (dist < 1000) {
+                if (dist < 500) {
                     frame.entities[key] = target;
                 }
             }

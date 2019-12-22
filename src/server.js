@@ -6,6 +6,7 @@ const io = require('socket.io')(http);
 const IoController = require("./controllers/ioHandler");
 const Globals = require("./services/globals");
 const EntityControlService = require("./services/entityControlService");
+const msgpack = require("msgpack-lite");
 
 const Matter = require("matter-js");
 Matter.use('matter-attractors');
@@ -51,6 +52,11 @@ io.on('connection', function(socket) {
 
 http.listen(port, () => console.log(`Game server running on port ${port}!`));
 
+let buf = msgpack.encode({foo: 123});
+console.log(buf);
+let jsn = msgpack.decode(buf);
+console.log(jsn);
+
 // Server loop
 setInterval(function () {
     Engine.update(Globals.engine, Globals.SERVER_RATE);
@@ -58,7 +64,7 @@ setInterval(function () {
         Globals.entities[key].sync();
     });
     Object.keys(clients).forEach((id) => {
-        clients[id].emit("game.resp.sync", Globals.packFrameData(id));
+        clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
     })
 }, Globals.SERVER_RATE);
 

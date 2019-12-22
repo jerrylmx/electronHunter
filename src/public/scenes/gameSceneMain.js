@@ -1,5 +1,5 @@
-define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory'],
-    function($, Phaser, Mdiff, ProbeRender, RenderFactory){
+define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack'],
+    function($, Phaser, Mdiff, ProbeRender, RenderFactory, msgpack){
     const GAME_SYNC = 'game.resp.sync';
     const W = 10000;
     const H = 10000;
@@ -46,7 +46,8 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory'],
 
             that.mdiff = new Mdiff({});
             window.socket.on(GAME_SYNC, function (data) {
-
+                let bufView = new Uint8Array(data);
+                data = msgpack.decode(bufView);
                 that.count++;
                 let gap = new Date().getTime() - that.stamp;
                 that.avg = (that.avg * (that.count - 1) + gap) / that.count;

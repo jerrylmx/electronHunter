@@ -10,9 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@msgpack/msgpack": "^1.9.3",
     "express": "^4.17.1",
     "matter-attractors": "^0.1.6",
     "matter-js": "^0.14.2",
-    "socket.io": "^2.3.0"
+    "msgpack-lite": "^0.1.26",
+    "socket.io": "^2.3.0",
+    "yarn": "^1.21.1"
   }
 }
