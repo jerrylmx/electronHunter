@@ -54,19 +54,16 @@ http.listen(port, () => console.log(`Game server running on port ${port}!`));
 
 // Server loop
 setInterval(function () {
+    Object.keys(clients).forEach((id) => {
+        clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
+    });
+}, Globals.SERVER_RATE);
+
+setInterval(function () {
     Engine.update(Globals.engine);
     Object.keys(Globals.entities).forEach((key) => {
         Globals.entities[key].sync();
     });
-    Object.keys(clients).forEach((id) => {
-        clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
-    })
-    Object.keys(clients).forEach((id) => {
-        clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
-    })
-    Object.keys(clients).forEach((id) => {
-        clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
-    })
 }, Globals.SERVER_RATE);
 
 // Server state logging
