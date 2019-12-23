@@ -1,7 +1,7 @@
 class SpawnService {
 
     static getSpawnLocation() {
-        return {x: Math.floor(Math.random() * 1000), y: Math.floor(Math.random() * 1000)};
+        return {x: Math.floor(Math.random() * 10000), y: Math.floor(Math.random() * 10000)};
     }
 
 }

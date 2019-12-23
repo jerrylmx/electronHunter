@@ -54,7 +54,7 @@ http.listen(port, () => console.log(`Game server running on port ${port}!`));
 
 // Server loop
 setInterval(function () {
-    Engine.update(Globals.engine, Globals.SERVER_RATE);
+    Engine.update(Globals.engine);
     Object.keys(Globals.entities).forEach((key) => {
         Globals.entities[key].sync();
     });

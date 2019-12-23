@@ -6,12 +6,12 @@ class Globals {
     static packFrameData(id) {
         if (!Globals.entities[id]) {
             return {
-                rate: process.env.SERVER_RATE || 25,
+                rate: process.env.SERVER_RATE || 50,
                 entities: Globals.entities
             }
         }
         let frame = {
-            rate: process.env.SERVER_RATE || 25,
+            rate: process.env.SERVER_RATE || 50,
             entities: {}
         }
         let center = {x: Globals.entities[id].x, y: Globals.entities[id].y};
@@ -45,7 +45,7 @@ Matter.Events.on(Globals.engine, "collisionStart", ({ pairs }) => {
     });
 });
 
-Globals.SERVER_RATE = process.env.SERVER_RATE || 25;
+Globals.SERVER_RATE = process.env.SERVER_RATE || 50;
 Globals.entities = {};
 
 

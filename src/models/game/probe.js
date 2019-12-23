@@ -15,7 +15,7 @@ class Probe {
         this.name = config.name;
         this.direction = {x: 1, y: 0};
         this.rotation = Math.atan2(1, 0) * 180 / Math.PI + 90;
-        this.speed = 3;
+        this.speed = 6;
         this.charge = 1;
         this.render = "ProbeRender";
         this.shootCd = 40;
@@ -72,7 +72,7 @@ class Probe {
         let bid = this.id + '*****' + Math.floor(Math.random() * 10000);
         let bullet = new Bullet({id: bid, x: this.x + offset * this.direction.x, y: this.y + offset * this.direction.y, rotation: this.rotation});
         let bBody = Globals.engine.world.bodies.find(body => body.label === bid);
-        let force = {x: this.direction.x * 20, y: this.direction.y * 20};
+        let force = {x: this.direction.x * 40, y: this.direction.y * 40};
         bBody && Body.setVelocity(bBody, force);
         return bullet;
     }
