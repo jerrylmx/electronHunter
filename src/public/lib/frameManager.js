@@ -41,10 +41,10 @@ define([], function() {
             for (let i = 0; i < Object.keys(x1.payload).length; i++) {
                 let key = Object.keys(x1.payload)[i];
                 let entity = x1.payload[key];
+                res[key] = clone(entity);
 
                 // No interpolation on non-spacial, or new objects
                 if (!entity.x || !entity.y || !x0.payload[key]) {
-                    res[key] = entity;
                     continue;
                 } else {
                     let r = (new Date().getTime() - x0.time) / this.rate;
@@ -53,7 +53,8 @@ define([], function() {
                     }
                     let dx = x1.payload[key].x - x0.payload[key].x;
                     let dy = x1.payload[key].y - x0.payload[key].y;
-                    res[key] = {...entity, x: x0.payload[key].x + dx * r, y: x0.payload[key].y + dy * r};
+                    res[key].x = x0.payload[key].x + dx * r;
+                    res[key].y = x0.payload[key].y + dy * r;
                 }
             }
             return res;
