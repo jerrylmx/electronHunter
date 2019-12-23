@@ -66,7 +66,7 @@ setInterval(function () {
         // clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
         clients[id].emit("game.resp.sync", msgpack.encode({time: new Date().getTime()}));
     });
-}, Globals.SERVER_RATE);
+}, 1000);
 
 // setInterval(function () {
 //     Engine.update(Globals.engine);
