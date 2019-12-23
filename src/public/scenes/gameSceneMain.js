@@ -102,6 +102,8 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
             //         window.entities[data.id].update(data, this, valDiff[data.id]);
             //     });
             // }
+
+            this.fmanager.ready && this.fmanager.pop();
         }
 
         static guiInit(scene) {
