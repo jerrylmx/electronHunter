@@ -1,5 +1,5 @@
-define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack'],
-    function($, Phaser, Mdiff, ProbeRender, RenderFactory, msgpack){
+define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 'fmanager'],
+    function($, Phaser, Mdiff, ProbeRender, RenderFactory, msgpack, Fmanager){
     const GAME_SYNC = 'game.resp.sync';
     const W = 10000;
     const H = 10000;
@@ -28,6 +28,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack'],
 
         create(frameInit) {
             var that = this;
+            that.fmanager = new Fmanager({rate: frameInit.rate});
 
             // stats
             that.stamp = new Date().getTime();
@@ -48,41 +49,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack'],
             window.socket.on(GAME_SYNC, function (data) {
                 let bufView = new Uint8Array(data);
                 data = msgpack.decode(bufView);
-                that.count++;
-                let gap = new Date().getTime() - that.stamp;
-                that.avg = (that.avg * (that.count - 1) + gap) / that.count;
-                if (gap < 35) {
-                    that.hist[0]++;
-                } else if (gap < 45) {
-                    that.hist[1]++;
-                } else if (gap < 55) {
-                    that.hist[2]++;
-                } else if (gap < 65) {
-                    that.hist[3]++;
-                } else {
-                    that.hist[4]++;
-                }
-                that.stamp = new Date().getTime();
-                if (that.count % 20 === 0) {
-                    console.log(`avg: ${that.avg}, hist: ${that.hist}`);
-                }
-
-                that.mdiff.refresh(data.entities);
-
-                let diff = that.mdiff.diff();
-                let valDiff = that.mdiff.valDiff(diff.toUpdate);
-                diff.toAdd.forEach((data) => {
-                    window.entities[data.id] = RenderFactory.getRender(data.render, data, that);
-                });
-                diff.toRemove.forEach((data) => {
-                    window.entities[data.id].destroy(that);
-                });
-                diff.toUpdate.forEach((data) => {
-                    window.entities[data.id].update(data, that, valDiff[data.id]);
-                });
-
-                // View model diff
-                // Materialize
+                that.fmanager.push(data.entities);
             });
 
             // Controls
@@ -119,6 +86,23 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack'],
             this.leftDown = pointer.leftButtonDown();
 
             GameSceneMain.guiUpdate(this);
+
+            this.fmanager.ready && console.log(this.fmanager.pop());
+            if (this.fmanager.ready) {
+                let entities = this.fmanager.pop();
+                this.mdiff.refresh(entities);
+                let diff = this.mdiff.diff();
+                let valDiff = this.mdiff.valDiff(diff.toUpdate);
+                diff.toAdd.forEach((data) => {
+                    window.entities[data.id] = RenderFactory.getRender(data.render, data, this);
+                });
+                diff.toRemove.forEach((data) => {
+                    window.entities[data.id].destroy(this);
+                });
+                diff.toUpdate.forEach((data) => {
+                    window.entities[data.id].update(data, this, valDiff[data.id]);
+                });
+            }
         }
 
         static guiInit(scene) {

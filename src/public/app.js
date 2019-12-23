@@ -10,7 +10,8 @@ require.config({
         'chargeRender': 'renders/chargeRender',
         'bulletRender': 'renders/bulletRender',
         'renderFactory': 'utils/renderUtils',
-        'msgpack': 'lib/msgpack.min'
+        'msgpack': 'lib/msgpack.min',
+        'fmanager': 'lib/frameManager'
     },
     shim: {
         'jQuery': {

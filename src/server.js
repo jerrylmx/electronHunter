@@ -33,7 +33,7 @@ io.on('connection', function(socket) {
     // {id: ..., name: ..., color: ...}
     socket.on("game.join", (data) => {
         IoController.gameJoin(data);
-        socket.emit("game.resp.init", Globals.packFrameData(socket.id));
+        socket.emit("game.resp.init", msgpack.encode(Globals.packFrameData(socket.id)));
 
     });
 
@@ -51,11 +51,6 @@ io.on('connection', function(socket) {
 
 
 http.listen(port, () => console.log(`Game server running on port ${port}!`));
-
-let buf = msgpack.encode({foo: 123});
-console.log(buf);
-let jsn = msgpack.decode(buf);
-console.log(jsn);
 
 // Server loop
 setInterval(function () {

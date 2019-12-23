@@ -1,4 +1,4 @@
-define(['jQuery', 'Phaser'], function($, Phaser){
+define(['jQuery', 'Phaser', 'msgpack'], function($, Phaser, msgpack){
     const DEFAULT_COLOR_CODE='0x4E7607';
     const COVER_W = 2000;
     const COVER_H = 2000;
@@ -32,8 +32,10 @@ define(['jQuery', 'Phaser'], function($, Phaser){
             });
 
             // Game start
-            window.socket.on("game.resp.init", function() {
-                self.scene.start("Main");
+            window.socket.on("game.resp.init", function(data) {
+                let bufView = new Uint8Array(data);
+                data = msgpack.decode(bufView);
+                self.scene.start("Main", data);
             });
         }
     }

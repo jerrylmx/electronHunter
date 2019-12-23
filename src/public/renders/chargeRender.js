@@ -13,6 +13,24 @@ define([], function() {
             this.phaserBody.add([charge]);
             this.phaserBody.name =  this.chargeData.id;
             this.phaserBody.setAlpha(0);
+
+            // Glow
+            let particles = scene.add.particles('flares');
+            particles.createEmitter({
+                frame: ['white'],
+                x: 0,
+                y: 0,
+                lifespan: 10,
+                angle: 90,
+                scale: { start: 0.3, end: 0 },
+                quantity: 1,
+                frequency: 10,
+                blendMode: 'ADD'
+            });
+            particles.setVisible(true);
+            particles.name = "baseParticle";
+            this.phaserBody.add([particles]);
+
             scene.maskContainer.add([this.phaserBody]);
 
             scene.add.tween({

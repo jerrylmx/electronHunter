@@ -6,10 +6,12 @@ class Globals {
     static packFrameData(id) {
         if (!Globals.entities[id]) {
             return {
+                rate: process.env.SERVER_RATE || 25,
                 entities: Globals.entities
             }
         }
         let frame = {
+            rate: process.env.SERVER_RATE || 25,
             entities: {}
         }
         let center = {x: Globals.entities[id].x, y: Globals.entities[id].y};
