@@ -27,7 +27,7 @@ define([], function() {
                 this.queue.push(frame);
             } else {
                 this.top = this.top % this.capacity;
-                this.ready = true;
+                // this.ready = true;
                 this.queue[this.top] = frame;
             }
             this.top++;

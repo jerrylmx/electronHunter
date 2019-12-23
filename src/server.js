@@ -14,6 +14,14 @@ const Engine = Matter.Engine;
 const Wall = require("./models/game/wall");
 
 
+// const WebSocket = require('ws');
+// const ws = new WebSocket('wss://www.example.com/socketserver');
+// ws.onopen = function(e) {
+//     alert("[open] Connection established");
+//     alert("Sending to server");
+//     socket.send("My name is John");
+// };
+
 let clients = {};
 app.use(express.static(__dirname + "/public"));
 app.get("/", function (req, res) {
@@ -56,7 +64,7 @@ http.listen(port, () => console.log(`Game server running on port ${port}!`));
 setInterval(function () {
     Object.keys(clients).forEach((id) => {
         // clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
-        clients[id].emit("game.resp.sync", msgpack.encode({a: 123}));
+        clients[id].emit("game.resp.sync", msgpack.encode({a: 100}));
     });
 }, Globals.SERVER_RATE);
 
@@ -66,11 +74,11 @@ setInterval(function () {
 //         Globals.entities[key].sync();
 //     });
 // }, Globals.SERVER_RATE);
-
-// Server state logging
-setInterval(function () {
-    console.log(`Entity count: ${Object.keys(Globals.entities).length}`);
-}, 10000);
+//
+// // Server state logging
+// setInterval(function () {
+//     console.log(`Entity count: ${Object.keys(Globals.entities).length}`);
+// }, 10000);
 
 let entityCtrl = new EntityControlService();
 entityCtrl.start();

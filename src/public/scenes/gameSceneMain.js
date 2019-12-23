@@ -48,6 +48,9 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
             that.mdiff = new Mdiff({});
 
             window.socket.on(GAME_SYNC, function (data) {
+                console.log(new Date().getTime() - that.t);
+                that.t = new Date().getTime();
+
                 let bufView = new Uint8Array(data);
                 data = msgpack.decode(bufView);
                 that.fmanager.push(data.entities);
