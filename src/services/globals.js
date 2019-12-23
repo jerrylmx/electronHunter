@@ -45,7 +45,7 @@ Matter.Events.on(Globals.engine, "collisionStart", ({ pairs }) => {
     });
 });
 
-Globals.SERVER_RATE = process.env.SERVER_RATE || 50;
+Globals.SERVER_RATE = process.env.SERVER_RATE || 1000;
 Globals.entities = {};
 
 

@@ -64,7 +64,7 @@ http.listen(port, () => console.log(`Game server running on port ${port}!`));
 setInterval(function () {
     Object.keys(clients).forEach((id) => {
         // clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
-        clients[id].emit("game.resp.sync", msgpack.encode({a: 100}));
+        clients[id].emit("game.resp.sync", msgpack.encode({time: new Date().getTime()}));
     });
 }, Globals.SERVER_RATE);
 
