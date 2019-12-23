@@ -1,8 +1,8 @@
 define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 'fmanager'],
     function($, Phaser, Mdiff, ProbeRender, RenderFactory, msgpack, Fmanager){
     const GAME_SYNC = 'game.resp.sync';
-    const W = 10000;
-    const H = 10000;
+    const W = 100;
+    const H = 100;
     const PTR_DEBOUNCE_TIME = 50;
     const GAME_CTRL_PTR = "game.move";
     const GAME_FIRE = 'game.fire';
@@ -71,37 +71,37 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
         }
 
         update() {
-            let pointer = this.input.activePointer;
-            if (pointer.rightButtonDown() && !this.rightDown) {
-                console.log("R");
-                this.rightDown = true;
-            }
-            // Fire
-            if (pointer.leftButtonDown() && !this.leftDown) {
-                if (!window.me) return;
-                window.socket.emit(GAME_FIRE, {id: window.socket.id});
-                this.leftDown = true;
-            }
-            this.rightDown = pointer.rightButtonDown();
-            this.leftDown = pointer.leftButtonDown();
-
-            GameSceneMain.guiUpdate(this);
-
-            if (this.fmanager.ready) {
-                let entities = this.fmanager.pop();
-                this.mdiff.refresh(entities);
-                let diff = this.mdiff.diff();
-                let valDiff = this.mdiff.valDiff(diff.toUpdate);
-                diff.toAdd.forEach((data) => {
-                    window.entities[data.id] = RenderFactory.getRender(data.render, data, this);
-                });
-                diff.toRemove.forEach((data) => {
-                    window.entities[data.id].destroy(this);
-                });
-                diff.toUpdate.forEach((data) => {
-                    window.entities[data.id].update(data, this, valDiff[data.id]);
-                });
-            }
+            // let pointer = this.input.activePointer;
+            // if (pointer.rightButtonDown() && !this.rightDown) {
+            //     console.log("R");
+            //     this.rightDown = true;
+            // }
+            // // Fire
+            // if (pointer.leftButtonDown() && !this.leftDown) {
+            //     if (!window.me) return;
+            //     window.socket.emit(GAME_FIRE, {id: window.socket.id});
+            //     this.leftDown = true;
+            // }
+            // this.rightDown = pointer.rightButtonDown();
+            // this.leftDown = pointer.leftButtonDown();
+            //
+            // GameSceneMain.guiUpdate(this);
+            //
+            // if (this.fmanager.ready) {
+            //     let entities = this.fmanager.pop();
+            //     this.mdiff.refresh(entities);
+            //     let diff = this.mdiff.diff();
+            //     let valDiff = this.mdiff.valDiff(diff.toUpdate);
+            //     diff.toAdd.forEach((data) => {
+            //         window.entities[data.id] = RenderFactory.getRender(data.render, data, this);
+            //     });
+            //     diff.toRemove.forEach((data) => {
+            //         window.entities[data.id].destroy(this);
+            //     });
+            //     diff.toUpdate.forEach((data) => {
+            //         window.entities[data.id].update(data, this, valDiff[data.id]);
+            //     });
+            // }
         }
 
         static guiInit(scene) {
