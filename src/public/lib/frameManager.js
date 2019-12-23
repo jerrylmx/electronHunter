@@ -48,6 +48,9 @@ define([], function() {
                     continue;
                 } else {
                     let r = (new Date().getTime() - x0.time) / this.rate;
+                    if (r > 4) {
+                        console.log(r);
+                    }
                     let dx = x1.payload[key].x - x0.payload[key].x;
                     let dy = x1.payload[key].y - x0.payload[key].y;
                     res[key] = {...entity, x: x0.payload[key].x + dx * r, y: x0.payload[key].y + dy * r};
