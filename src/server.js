@@ -80,8 +80,8 @@ setInterval(function () {
 //     console.log(`Entity count: ${Object.keys(Globals.entities).length}`);
 // }, 10000);
 
-let entityCtrl = new EntityControlService();
-entityCtrl.start();
+// let entityCtrl = new EntityControlService();
+// entityCtrl.start();
 
 // Boundary
 Globals.entities["topWall"] = new Wall({id: "topWall", type: "T"});
