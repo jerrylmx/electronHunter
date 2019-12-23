@@ -87,7 +87,6 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
 
             GameSceneMain.guiUpdate(this);
 
-            this.fmanager.ready && console.log(this.fmanager.pop());
             if (this.fmanager.ready) {
                 let entities = this.fmanager.pop();
                 this.mdiff.refresh(entities);
