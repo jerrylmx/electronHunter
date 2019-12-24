@@ -49,7 +49,7 @@ define(['jQuery', 'Phaser', 'msgpack'], function($, Phaser, msgpack){
             window.socket.on(PONG_TEST, function(data) {
                 let gap = new Date().getTime() - that.time;
                 let lag = Math.abs(gap - 500);
-                that.avg = (that.avg + lag) / 2;
+                that.avg = that.avg * 0.9 + lag * 0.1;
 
                 $signal.text(Math.ceil(that.avg) + 'ms');
                 if (that.avg < 100) {
