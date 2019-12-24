@@ -47,23 +47,27 @@ define(['jQuery', 'Phaser', 'msgpack'], function($, Phaser, msgpack){
 
             // Pong test
             window.socket.on(PONG_TEST, function(data) {
-                let lag = new Date().getTime() - that.time;
-                that.avg = (that.avg + lag) / 2
+                let gap = new Date().getTime() - that.time;
+                let lag = Math.abs(gap - 500);
+                that.avg = (that.avg + lag) / 2;
+
                 $signal.text(Math.ceil(that.avg) + 'ms');
                 if (that.avg < 100) {
                     $signal.css('background-color', '#16a085');
                 } else if (that.avg < 150) {
-                    $signal.css('background-color', '#bbff6e');
+                    $signal.css('background-color', '#79ff00');
                 } else if (that.avg < 250) {
-                    $signal.css('background-color', '#eeff6e');
+                    $signal.css('background-color', '#ffda00');
                 } else {
                     $signal.css('background-color', '#ff5521');
                 }
+
+
+                that.time = new Date().getTime();
             });
 
             that.interval = setInterval(() => {
                 window.socket.emit(PING_TEST);
-                that.time = new Date().getTime();
             }, 500);
         }
     }
