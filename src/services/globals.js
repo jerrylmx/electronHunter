@@ -1,17 +1,17 @@
 const Matter = require("matter-js");
 const Bodies = Matter.Bodies;
 const World = Matter.World;
-
+const SERVER_RATE_DEFAULT = 40;
 class Globals {
     static packFrameData(id) {
         if (!Globals.entities[id]) {
             return {
-                rate: process.env.SERVER_RATE || 50,
+                rate: process.env.SERVER_RATE || SERVER_RATE_DEFAULT,
                 entities: Globals.entities
             }
         }
         let frame = {
-            rate: process.env.SERVER_RATE || 50,
+            rate: process.env.SERVER_RATE || SERVER_RATE_DEFAULT,
             entities: {}
         }
         let center = {x: Globals.entities[id].x, y: Globals.entities[id].y};
@@ -45,7 +45,7 @@ Matter.Events.on(Globals.engine, "collisionStart", ({ pairs }) => {
     });
 });
 
-Globals.SERVER_RATE = process.env.SERVER_RATE || 1000;
+Globals.SERVER_RATE = process.env.SERVER_RATE || SERVER_RATE_DEFAULT;
 Globals.entities = {};
 
 

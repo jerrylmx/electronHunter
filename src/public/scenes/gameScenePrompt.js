@@ -3,6 +3,8 @@ define(['jQuery', 'Phaser', 'msgpack'], function($, Phaser, msgpack){
     const COVER_W = 2000;
     const COVER_H = 2000;
     const GAME_JOIN = 'game.join';
+    const PING_TEST = 'ping.test';
+    const PONG_TEST = 'pong.test';
 
     return class GameScenePrompt extends Phaser.Scene {
         constructor() {
@@ -18,8 +20,12 @@ define(['jQuery', 'Phaser', 'msgpack'], function($, Phaser, msgpack){
             let selected = DEFAULT_COLOR_CODE;
             let $container = $( '#container' );
             let $joinBtn = $( '#join' );
-            var self = this;
-            self.add.tileSprite(COVER_W/2, COVER_H/2, COVER_W, COVER_H, 'background');
+            let $signal = $( '.signal' );
+
+            var that = this;
+            that.add.tileSprite(COVER_W/2, COVER_H/2, COVER_W, COVER_H, 'background');
+            that.time = new Date().getTime();
+            that.avg = 0;
 
             // Join Game
             $joinBtn.click(function () {
@@ -35,8 +41,21 @@ define(['jQuery', 'Phaser', 'msgpack'], function($, Phaser, msgpack){
             window.socket.on("game.resp.init", function(data) {
                 let bufView = new Uint8Array(data);
                 data = msgpack.decode(bufView);
-                self.scene.start("Main", data);
+                that.interval && clearInterval(that.interval);
+                that.scene.start("Main", data);
             });
+
+            // Pong test
+            window.socket.on(PONG_TEST, function(data) {
+                let lag = new Date().getTime() - that.time;
+                that.avg = (that.avg + lag) / 2
+                $signal.text(Math.ceil(that.avg) + 'ms');
+            });
+
+            that.interval = setInterval(() => {
+                window.socket.emit(PING_TEST);
+                that.time = new Date().getTime();
+            }, 500);
         }
     }
 });

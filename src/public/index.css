@@ -70,3 +70,12 @@ img {
     height: 300px;
     opacity: 0.3;
 }
+
+.signal {
+    padding: 3px;
+    margin-right: 10px;
+    min-width: 20px;
+    background-color: #16a085;
+    border: thin solid darken(#16a085, 7%);
+    display: inline-block;
+}

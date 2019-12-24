@@ -14,14 +14,6 @@ const Engine = Matter.Engine;
 const Wall = require("./models/game/wall");
 
 
-// const WebSocket = require('ws');
-// const ws = new WebSocket('wss://www.example.com/socketserver');
-// ws.onopen = function(e) {
-//     alert("[open] Connection established");
-//     alert("Sending to server");
-//     socket.send("My name is John");
-// };
-
 let clients = {};
 app.use(express.static(__dirname + "/public"));
 app.get("/", function (req, res) {
@@ -50,6 +42,11 @@ io.on('connection', function(socket) {
         IoController.gameMove(data);
     });
 
+    // {}
+    socket.on("ping.test", () => {
+        socket.emit("pong.test");
+    });
+
     // {id: ...}
     socket.on("game.fire", (data) => {
         IoController.gameFire(data);
@@ -63,25 +60,24 @@ http.listen(port, () => console.log(`Game server running on port ${port}!`));
 // Server loop
 setInterval(function () {
     Object.keys(clients).forEach((id) => {
-        // clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
-        clients[id].emit("game.resp.sync", msgpack.encode({time: new Date().getTime()}));
+        clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
     });
-}, 1000);
+}, Globals.SERVER_RATE);
 
-// setInterval(function () {
-//     Engine.update(Globals.engine);
-//     Object.keys(Globals.entities).forEach((key) => {
-//         Globals.entities[key].sync();
-//     });
-// }, Globals.SERVER_RATE);
-//
-// // Server state logging
+setInterval(function () {
+    Engine.update(Globals.engine);
+    Object.keys(Globals.entities).forEach((key) => {
+        Globals.entities[key].sync();
+    });
+}, Globals.SERVER_RATE);
+
+// Server state logging
 // setInterval(function () {
 //     console.log(`Entity count: ${Object.keys(Globals.entities).length}`);
 // }, 10000);
 
-// let entityCtrl = new EntityControlService();
-// entityCtrl.start();
+let entityCtrl = new EntityControlService();
+entityCtrl.start();
 
 // Boundary
 Globals.entities["topWall"] = new Wall({id: "topWall", type: "T"});

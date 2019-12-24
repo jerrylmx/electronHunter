@@ -15,8 +15,6 @@
     "matter-attractors": "^0.1.6",
     "matter-js": "^0.14.2",
     "msgpack-lite": "^0.1.26",
-    "socket.io": "^2.3.0",
-    "ws": "^7.2.1",
-    "yarn": "^1.21.1"
+    "socket.io": "^2.3.0"
   }
 }

@@ -27,7 +27,7 @@ define([], function() {
                 this.queue.push(frame);
             } else {
                 this.top = this.top % this.capacity;
-                // this.ready = true;
+                this.ready = true;
                 this.queue[this.top] = frame;
             }
             this.top++;
@@ -48,9 +48,9 @@ define([], function() {
                     continue;
                 } else {
                     let r = (new Date().getTime() - x0.time) / this.rate;
-                    if (r > 4) {
-                        console.log(r);
-                    }
+                    // if (r > 4) {
+                    //     console.log(r);
+                    // }
                     let dx = x1.payload[key].x - x0.payload[key].x;
                     let dy = x1.payload[key].y - x0.payload[key].y;
                     res[key].x = x0.payload[key].x + dx * r;
