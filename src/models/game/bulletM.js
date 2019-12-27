@@ -3,14 +3,14 @@ const World = Matter.World,
     Bodies = Matter.Bodies
 const Globals = require("../../services/globals");
 
-class Bullet {
+class BulletM {
     constructor(config) {
         this.id = config.id;
         this.x = config.x;
         this.y = config.y;
         this.rotation = config.rotation;
-        this.ttl = 160;
-        this.render = "BulletRender";
+        this.ttl = 30;
+        this.render = "BulletMRender";
         World.add(Globals.engine.world, [this.createBody()]);
     }
 
@@ -75,4 +75,4 @@ class Bullet {
     }
 }
 
-module.exports = Bullet;
+module.exports = BulletM;

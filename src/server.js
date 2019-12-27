@@ -72,9 +72,10 @@ setInterval(function () {
 }, Globals.SERVER_RATE);
 
 // Server state logging
-// setInterval(function () {
-//     console.log(`Entity count: ${Object.keys(Globals.entities).length}`);
-// }, 10000);
+setInterval(function () {
+    console.log(`Entity count: ${Object.keys(Globals.entities).length}`);
+    console.log(`Probe count: ${Object.keys(Globals.probeEntities).length}`);
+}, 10000);
 
 let entityCtrl = new EntityControlService();
 entityCtrl.start();

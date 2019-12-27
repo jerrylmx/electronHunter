@@ -6,11 +6,13 @@ class Globals {
     static packFrameData(id) {
         if (!Globals.entities[id]) {
             return {
+                ranking: Globals.getTop5(),
                 rate: process.env.SERVER_RATE || SERVER_RATE_DEFAULT,
                 entities: Globals.entities
             }
         }
         let frame = {
+            ranking: Globals.getTop5(),
             rate: process.env.SERVER_RATE || SERVER_RATE_DEFAULT,
             entities: {}
         }
@@ -31,6 +33,16 @@ class Globals {
     static dist(a, b) {
         return Math.sqrt(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2));
     }
+    static getTop5() {
+        return Globals.probeEntities.sort((a, b) => {
+            let n = b.kills - a.kills;
+            if (n !== 0) {
+                return n;
+            }
+            return a.id - b.id;
+        });
+    }
+
 }
 Globals.engine = Matter.Engine.create();
 Globals.engine.world.gravity = { x: 0, y: 0, scale: 0.5 };
@@ -47,6 +59,9 @@ Matter.Events.on(Globals.engine, "collisionStart", ({ pairs }) => {
 
 Globals.SERVER_RATE = process.env.SERVER_RATE || SERVER_RATE_DEFAULT;
 Globals.entities = {};
+Globals.probeCount = 0;
+Globals.probeEntities = [];
+Globals.ranking = [];
 
 
 module.exports = Globals;

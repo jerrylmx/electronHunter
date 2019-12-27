@@ -23,7 +23,7 @@ class Charge {
         // });
         MatterAttractors.Attractors.gravityConstant = 0.01;
 
-        return Bodies.circle(this.x, this.y, 1, {
+        return Bodies.circle(this.x, this.y, 5, {
             mass: 0.001,
             label: this.id,
             force: {x: 0, y: 0},
@@ -67,11 +67,19 @@ class Charge {
 
     onCollision(body) {
         switch (body.render) {
-            case "ProbeRender":
+            case "ProbeRenderA":
+                this.destroy();
+                delete Globals.entities[this.id];
+                break;
+            case "ProbeRenderB":
                 this.destroy();
                 delete Globals.entities[this.id];
                 break;
             case "ChargeRender":
+                break;
+            case "Laser":
+                this.destroy();
+                delete Globals.entities[this.id];
                 break;
             default:
                 break;

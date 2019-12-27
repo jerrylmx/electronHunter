@@ -1,14 +1,17 @@
 var SpawnService = require("../services/spawnManager");
-var Probe = require("../models/game/probe");
+var ProbeA = require("../models/game/probeA");
+var ProbeB = require("../models/game/probeB");
 var Globals = require("../services/globals");
-
+var EntityControlService = require("../services/entityControlService");
 
 class IOHandler {
     static gameJoin(data) {
         let spawnLocation = SpawnService.getSpawnLocation();
         let cfg = {...spawnLocation, ...data};
-        let probe = new Probe(cfg);
+        let rand = Math.floor(Math.random() * 10);
+        let probe = EntityControlService.getRandomProbe(cfg);
         Globals.entities[data.id] = probe;
+        Globals.probeCount++;
         IOHandler.log("gameJoin", Object.values(cfg));
     }
 
@@ -25,11 +28,7 @@ class IOHandler {
 
     static gameFire(data) {
         let target = Globals.entities[data.id];
-        let bullet = null;
-        if (target) {
-            bullet = target.fire();
-        }
-        if (bullet) Globals.entities[bullet.id] = bullet;
+        target && target.fire();
     }
 
     static log(handler, payload=[]) {

@@ -1,5 +1,5 @@
-define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 'fmanager'],
-    function($, Phaser, Mdiff, ProbeRender, RenderFactory, msgpack, Fmanager){
+define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'leaderBoardRender'],
+    function($, Phaser, Mdiff, RenderFactory, msgpack, Fmanager, LeaderBoardRender){
     const GAME_SYNC = 'game.resp.sync';
     const W = 10000;
     const H = 10000;
@@ -21,15 +21,23 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
             this.load.image('dot', 'assets/dot.png');
             this.load.image('fireGlow', 'assets/fireGlow.png');
             this.load.image('bullet', 'assets/bullet.png');
+            this.load.image('bulletM', 'assets/bulletM.png');
+            this.load.image('laser', 'assets/laser.png');
             this.load.atlas('flares', 'assets/flares.png', 'assets/flares.json');
             this.load.image('radar', 'assets/radar.png');
+            this.load.image('arrow', 'assets/arrow.png');
+            this.load.image('target', 'assets/target.png');
             this.load.image('probeA', 'assets/probes/probeA.png');
+            this.load.image('probeB', 'assets/probes/probeB.png');
+            this.load.image('probeC', 'assets/probes/probeC.png');
+            this.load.image('probeD', 'assets/probes/probeD.png');
         }
 
         create(frameInit) {
             var that = this;
             that.fmanager = new Fmanager({rate: frameInit.rate});
 
+            that.graphics = that.add.graphics();
             // stats
             that.stamp = new Date().getTime();
             that.count = 0;
@@ -39,26 +47,34 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
             that.leftDown = false;
             that.rightDown = false;
             that.pointerLocked = false;
+            that.pointerPosition = {x: 0, y: 0};
 
             that.bg = that.add.tileSprite(W/2, H/2, W, H, 'background');
             that.maskContainer = that.add.container(0, 0);
             that.maskContainer.add([that.bg]);
-            GameSceneMain.guiInit(that);
 
             that.mdiff = new Mdiff({});
 
             window.socket.on(GAME_SYNC, function (data) {
                 let bufView = new Uint8Array(data);
                 data = msgpack.decode(bufView);
+                if (!that.frame) {
+                    that.frame = data;
+                    GameSceneMain.guiInit(that);
+                } else {
+                    that.frame = data;
+                }
                 that.fmanager.push(data.entities);
             });
 
             // Controls
             that.input.on('pointermove', function (event) {
+                that.pointerPosition = {x: event.worldX, y: event.worldY};
                 let myRender = window.me;
                 if (!myRender) return;
                 let dir = new Phaser.Math.Vector2(event.worldX - myRender.phaserBody.x, event.worldY - myRender.phaserBody.y).normalize();
                 let angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI + 90;
+
                 myRender.phaserBody.angle = angle;
 
                 // Limit pointer move request
@@ -77,12 +93,17 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
                 console.log("R");
                 this.rightDown = true;
             }
-            // Fire
+            // Click
             if (pointer.leftButtonDown() && !this.leftDown) {
                 if (!window.me) return;
                 window.socket.emit(GAME_FIRE, {id: window.socket.id});
+
+
                 this.leftDown = true;
             }
+
+
+
             this.rightDown = pointer.rightButtonDown();
             this.leftDown = pointer.leftButtonDown();
 
@@ -121,6 +142,10 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
             dot.scrollFactorY = 0;
             scene.dot = dot;
             radarContainer.add([radar,dot]);
+
+            if (scene.frame) {
+                scene.lb = new LeaderBoardRender(scene.frame.ranking, scene);
+            }
         }
 
         static guiUpdate(scene) {
@@ -130,6 +155,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'probeRender', 'renderFactory', 'msgpack', 
             let botRatio = me.probeData.y / H;
             scene.dot.x = -58 + rightRatio * 58 * 2;
             scene.dot.y = -58 + botRatio * 58 * 2;
+            scene.lb.update(scene.frame.ranking, scene);
         }
     }
 });

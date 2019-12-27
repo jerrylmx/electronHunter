@@ -4,7 +4,7 @@ define([], function() {
             this.bulletData = bulletData;
             this.phaserBody = scene.add.container(bulletData.x, bulletData.y);
 
-            let bullet = scene.add.sprite(0, 0, 'bullet');
+            let bullet = scene.add.sprite(0, 0, 'bulletM');
             bullet.name = this.bulletData.id;
             bullet.depth = 1;
             bullet.setScale(0.05);
