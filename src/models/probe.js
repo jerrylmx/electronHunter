@@ -69,6 +69,10 @@ class Probe {
             case "BulletRender":
                 this.hurt();
                 break;
+            case "BulletMRender":
+                console.log("BulletRenderM");
+                this.hurt();
+                break;
             case "Laser":
                 this.hurt();
                 break;

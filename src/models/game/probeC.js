@@ -12,6 +12,8 @@ class ProbeC extends Probe {
         this.speed = 6;
         this.render = "ProbeRenderC";
         this.shootCd = 5;
+        this.hidden = 1;
+
         World.add(Globals.engine.world, [this.createBody()]);
     }
 
@@ -44,12 +46,22 @@ class ProbeC extends Probe {
         let force = {x: this.direction.x * 20, y: this.direction.y * 20};
         bBody && Body.setVelocity(bBody, force);
 
+        this.reveal();
+
         if (bullet) Globals.entities[bullet.id] = bullet;
         return bullet;
     }
 
     onCollision(body) {
         super.onCollision(body);
+        this.reveal();
+    }
+
+    reveal() {
+        this.hidden = 0;
+        setTimeout(() => {
+            this.hidden = 1;
+        }, 2000);
     }
 
 }

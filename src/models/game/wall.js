@@ -12,8 +12,8 @@ class Wall {
     }
 
     createBody() {
-        let w = 10000;
-        let h = 10000;
+        let w = 5000;
+        let h = 5000;
         let t = 10;
         switch (this.type) {
             case "T":

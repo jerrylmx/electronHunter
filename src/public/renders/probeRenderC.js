@@ -1,13 +1,12 @@
 define(['Phaser'], function(Phaser) {
-    const W = 10000;
-    const H = 10000;
+    const W = 5000;
+    const H = 5000;
     return class ProbeRender {
         constructor(probeData, scene) {
             this.counter = 0;
             this.probeData = probeData;
             this.phaserBody = scene.add.container(probeData.x, probeData.y);
             this.infoBody = scene.add.container(probeData.x, probeData.y);
-            this.compassBody = scene.add.container(probeData.x, probeData.y);
 
             let probe = scene.add.sprite(0, 0, 'probeC');
             probe.name = this.probeData.id;
@@ -38,8 +37,7 @@ define(['Phaser'], function(Phaser) {
             this.infoBody.add([...this.charges, name]);
             this.renderBaseParticle(scene);
             this.phaserBody.name =  this.probeData.id;
-            scene.maskContainer.add([this.phaserBody, this.infoBody, this.compassBody]);
-
+            scene.maskContainer.add([this.phaserBody, this.infoBody]);
             // const line = new Phaser.Geom.Line(
             //     this.phaserBody.x,
             //     this.phaserBody.y,
@@ -63,32 +61,10 @@ define(['Phaser'], function(Phaser) {
                 scene.cameras.main.setBounds(0, 0, W, H);
                 scene.cameras.main.setZoom(1);
                 scene.cameras.main.startFollow(this.phaserBody);
-
-                // GUI
-                // Object.keys(window.entities).forEach((key) => {
-                //     if (window.entities[key].probeData && window.entities[key].probeData.render.includes("probe")) {
-                //         let target = window.entities[key].phaserBody;
-                //         let dir = new Phaser.Math.Vector2(target.x - this.phaserBody.x, target.y - this.phaserBody.y).normalize();
-                //         let angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI + 90;
-                //         let dx = Math.sin(Phaser.Math.DegToRad(angle)) * 200;
-                //         let dy = Math.cos(Phaser.Math.DegToRad(angle)) * -200;
-                //
-                //         let t = scene.add.sprite(dx, dy, 'target');
-                //         t.setScale(0.08);
-                //         t.scaleX = 0.12;
-                //         t.alpha = 0.9;
-                //         t.angle = angle;
-                //         t.name = key;
-                //         this.compassBody.add([t]);
-                //     }
-                // });
-
-
-                let arrow = scene.add.sprite(0, -300, 'arrow');
-                arrow.setScale(0.08);
-                arrow.alpha = 0.5;
-                window.me.phaserBody.add([arrow]);
-
+                this.phaserBody.alpha = 0.3;
+            } else {
+                this.phaserBody.alpha = 0;
+                this.infoBody.alpha = 0;
             }
         }
 
@@ -98,8 +74,6 @@ define(['Phaser'], function(Phaser) {
             this.phaserBody.y = probeData.y;
             this.infoBody.x = probeData.x;
             this.infoBody.y = probeData.y;
-            this.compassBody.x = probeData.x;
-            this.compassBody.y = probeData.y;
 
             // Self update
             if (window.socket.id === this.probeData.id) {
@@ -142,6 +116,7 @@ define(['Phaser'], function(Phaser) {
             this.patchChargeDiff(valDiff.charge, scene);
             this.patchFireDiff(valDiff.fireImpulse, scene);
             this.watchDead(valDiff.dead, scene);
+            this.watchHidden(valDiff.hidden, scene);
 
             this.counter++;
         }
@@ -264,6 +239,38 @@ define(['Phaser'], function(Phaser) {
             if (!diff) return;
             if (diff === 1) {
 
+            }
+        }
+
+        watchHidden(diff, scene) {
+            if (window.me.probeData.id === this.probeData.id) {
+                if (this.probeData.hidden === 1 && diff === 1) {
+                    scene.add.tween({
+                        targets: [this.phaserBody],
+                        alpha: { value: 0.3, duration: 500, ease: 'Power1' },
+                        loop: 0
+                    });
+                } else if (this.probeData.hidden === 0 && diff === -1) {
+                    scene.add.tween({
+                        targets: [this.phaserBody],
+                        alpha: { value: 1, duration: 500, ease: 'Power1' },
+                        loop: 0
+                    });
+                }
+            } else {
+                if (this.probeData.hidden === 1 && diff === 1) {
+                    scene.add.tween({
+                        targets: [this.phaserBody, this.infoBody],
+                        alpha: { value: 0, duration: 500, ease: 'Power1' },
+                        loop: 0
+                    });
+                } else if (this.probeData.hidden === 0 && diff === -1) {
+                    scene.add.tween({
+                        targets: [this.phaserBody, this.infoBody],
+                        alpha: { value: 1, duration: 500, ease: 'Power1' },
+                        loop: 0
+                    });
+                }
             }
         }
 

@@ -1,6 +1,6 @@
 define(['Phaser'], function(Phaser) {
-    const W = 10000;
-    const H = 10000;
+    const W = 5000;
+    const H = 5000;
     return class ProbeRender {
         constructor(probeData, scene) {
             this.probeData = probeData;
