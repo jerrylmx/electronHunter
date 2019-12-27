@@ -11,7 +11,7 @@ class ProbeA extends Probe {
         super(config);
         this.speed = 6;
         this.render = "ProbeRenderA";
-        this.shootCd = 5;
+        this.shootCd = 30;
         World.add(Globals.engine.world, [this.createBody()]);
     }
 

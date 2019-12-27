@@ -16,6 +16,7 @@ class ProbeB extends Probe {
         this.render = "ProbeRenderB";
         this.shootCd = 5;
         this.rayTester = new RayTestService();
+        this.rayDelay = 500;
 
         this.laserState = 0;
         World.add(Globals.engine.world, [this.createBody()]);
@@ -38,7 +39,6 @@ class ProbeB extends Probe {
     }
 
     fire() {
-        let offset = 50;
         if (this.shootCd > 0 || this.laserState !== 0) return;
         this.fireImpulse = 1 - this.fireImpulse;
 
@@ -65,7 +65,7 @@ class ProbeB extends Probe {
                 that.laserState = 0;
             }, 300);
 
-        }, 1000);
+        }, this.rayDelay);
 
 
         this.shootCd = 5;

@@ -34,13 +34,20 @@ class Globals {
         return Math.sqrt(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2));
     }
     static getTop5() {
-        return Globals.probeEntities.sort((a, b) => {
+        let sorted = Globals.probeEntities.sort((a, b) => {
             let n = b.kills - a.kills;
             if (n !== 0) {
                 return n;
             }
             return a.id - b.id;
+        }).map((entity) => {
+            return {id: entity.id, kills: entity.kills}
         });
+        if (sorted.length > 5) {
+            return [sorted[0], sorted[1], sorted[2], sorted[3], sorted[4]]
+        } else {
+            return sorted;
+        }
     }
 
 }

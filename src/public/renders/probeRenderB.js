@@ -175,8 +175,8 @@ define(['Phaser'], function(Phaser) {
                 this.phaserBody.add([line]);
                 scene.add.tween({
                     targets: [line],
-                    scaleX : { value: 0.4, duration: 1000, ease: 'Power1' },
-                    alpha: { value: 0.3, duration: 1000, ease: 'Power1' },
+                    scaleX : { value: 0.4, duration: this.probeData.rayDelay, ease: 'Power1' },
+                    alpha: { value: 0.3, duration: this.probeData.rayDelay, ease: 'Power1' },
                     loop: 0
                 });
             }
