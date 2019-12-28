@@ -1,4 +1,4 @@
-define(['Phaser'], function(Phaser) {
+define(['Phaser', 'jQuery'], function(Phaser, $) {
     const W = 5000;
     const H = 5000;
     return class ProbeRender {
@@ -55,7 +55,7 @@ define(['Phaser'], function(Phaser) {
                     y: this.probeData.y,
                     key: 'mask',
                     add: false,
-                    scale: 7
+                    scale: this.probeData.visibility
                 });
                 scene.maskContainer.mask = new Phaser.Display.Masks.BitmapMask(scene, scene.spotlight);
                 scene.cameras.main.setBounds(0, 0, W, H);
@@ -76,6 +76,7 @@ define(['Phaser'], function(Phaser) {
                 scene.spotlight.x = this.phaserBody.x;
                 scene.spotlight.y = this.phaserBody.y;
                 this.watchKills(valDiff.kills, scene);
+                this.watchDead(valDiff.dead, scene);
             } else {
                 this.phaserBody.angle = probeData.rotation;
             }
@@ -91,7 +92,6 @@ define(['Phaser'], function(Phaser) {
 
             this.patchChargeDiff(valDiff.charge, scene);
             this.watchFireDiff(valDiff.laserState, scene);
-            this.watchDead(valDiff.dead, scene);
         }
 
         destroy(scene) {
@@ -175,8 +175,8 @@ define(['Phaser'], function(Phaser) {
                 this.phaserBody.add([line]);
                 scene.add.tween({
                     targets: [line],
-                    scaleX : { value: 0.4, duration: this.probeData.rayDelay, ease: 'Power1' },
-                    alpha: { value: 0.3, duration: this.probeData.rayDelay, ease: 'Power1' },
+                    scaleX : { value: 0.4, duration: this.probeData.ttl, ease: 'Power1' },
+                    alpha: { value: 0.3, duration: this.probeData.ttl, ease: 'Power1' },
                     loop: 0
                 });
             }
@@ -260,20 +260,21 @@ define(['Phaser'], function(Phaser) {
             if (Math.abs(diff) > 0) {
                 let anchorX = window.innerWidth / 2, anchorY = window.innerHeight - 100;
                 let msg = this.probeData.kills === 1? `${this.probeData.kills} Kill` : `${this.probeData.kills} Kills`;
-                let kills = scene.add.text(anchorX, anchorY, msg, { fontFamily: '"Verdana"' });
-                kills.setOrigin(0.5)
-                kills.setAlpha(0);
-                kills.scrollFactorX = 0;
-                kills.scrollFactorY = 0;
+                this.kills && this.kills.destroy();
+                this.kills = scene.add.text(anchorX, anchorY, msg, { fontFamily: '"Verdana"' });
+                this.kills.setOrigin(0.5)
+                this.kills.setAlpha(0);
+                this.kills.scrollFactorX = 0;
+                this.kills.scrollFactorY = 0;
 
                 scene.add.tween({
-                    targets: [kills],
+                    targets: [this.kills],
                     alpha: { value: 1, duration: 1000, ease: 'Power1' },
                     yoyo: true,
                     loop: 0,
                     hold: 2000,
                     onComplete: function () {
-                        kills && kills.destroy();
+                        this.kills && this.kills.destroy();
                     }
                 });
             }
@@ -282,7 +283,17 @@ define(['Phaser'], function(Phaser) {
         watchDead(diff, scene) {
             if (!diff) return;
             if (diff === 1) {
-
+                let anchorX = window.innerWidth / 2, anchorY = 300;
+                let msg = `You are eliminated!`;
+                let text = scene.add.text(anchorX, anchorY, msg, {
+                    fontFamily: '"Verdana"',
+                    fontSize: '50px'});
+                text.scrollFactorX = 0;
+                text.scrollFactorY = 0;
+                text.setOrigin(0.5);
+                setTimeout(() => {
+                    location.reload();
+                }, 3000);
             }
         }
 

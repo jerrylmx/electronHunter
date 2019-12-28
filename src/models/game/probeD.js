@@ -3,13 +3,13 @@ const World = Matter.World,
     Bodies = Matter.Bodies,
     Body = Matter.Body
 const Globals = require("../../services/globals");
-const BulletM = require("./bulletM");
+const Bullet = require("./bullet");
 const Probe = require('../probe');
 
-class ProbeC extends Probe {
+class ProbeD extends Probe {
     constructor(config) {
-        super(config, "ProbeRenderC");
-        this.hidden = 1;
+        super(config, "ProbeRenderD");
+        this.acc = 0;
         World.add(Globals.engine.world, [this.createBody()]);
     }
 
@@ -17,7 +17,7 @@ class ProbeC extends Probe {
         return Bodies.circle(this.x, this.y, this.r, {
             mass: 100,
             label: this.id,
-            force: {x: 0.01, y: 0},
+            force: {x: 0, y: 0.01},
             friction: 0,
             restitution: 0.5
         });
@@ -25,43 +25,46 @@ class ProbeC extends Probe {
 
     sync() {
         let myBody = super.sync();
-        let v = {x: this.direction.x * this.speed, y: this.direction.y * this.speed};
+        let sp = this.speed + this.acc;
+        let v = {x: this.direction.x * sp, y: this.direction.y * sp};
         myBody && Body.setVelocity(myBody, v);
     }
 
     fire() {
         let offset = 50;
-
         if (this.shootCd > 0) return;
+
         this.fireImpulse = 1 - this.fireImpulse;
         this.shootCd = this.cfg.cd;
         let bid = this.id + '*****' + Math.floor(Math.random() * 10000);
-        let bullet = new BulletM({
+        let bullet = new Bullet({
             id: bid,
             x: this.x + offset * this.direction.x,
             y: this.y + offset * this.direction.y,
-            rotation: this.rotation
+            rotation: this.rotation,
+            ttl: this.ttl
         });
         let bBody = Globals.engine.world.bodies.find(body => body.label === bid);
         let force = {x: this.direction.x * this.strength, y: this.direction.y * this.strength};
         bBody && Body.setVelocity(bBody, force);
-        this.reveal();
         if (bullet) Globals.entities[bullet.id] = bullet;
+
+        this.dash();
         return bullet;
+    }
+
+    dash() {
+        let that = this;
+        this.acc += 5;
+        setTimeout(() => {
+            that.acc -= 5;
+        }, 1000);
     }
 
     onCollision(body) {
         super.onCollision(body);
-        this.reveal();
-    }
-
-    reveal() {
-        this.hidden = 0;
-        setTimeout(() => {
-            this.hidden = 1;
-        }, 2000);
     }
 
 }
 
-module.exports = ProbeC;
+module.exports = ProbeD;

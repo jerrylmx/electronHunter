@@ -1,5 +1,5 @@
-define(['probeRenderA', 'probeRenderB', 'probeRenderC', 'chargeRender', 'bulletRender', 'bulletMRender'],
-    function(ProbeRenderA, ProbeRenderB, ProbeRenderC, ChargeRender, BulletRender, BulletMRender) {
+define(['probeRenderA', 'probeRenderB', 'probeRenderC', 'probeRenderD', 'chargeRender', 'bulletRender', 'bulletMRender'],
+    function(ProbeRenderA, ProbeRenderB, ProbeRenderC, ProbeRenderD, ChargeRender, BulletRender, BulletMRender) {
     return class RenderUtils {
         constructor(frameInit) {
             this.frameOld = {};
@@ -14,6 +14,8 @@ define(['probeRenderA', 'probeRenderB', 'probeRenderC', 'chargeRender', 'bulletR
                     return new ProbeRenderB(data, scene);
                 case "ProbeRenderC":
                     return new ProbeRenderC(data, scene);
+                case "ProbeRenderD":
+                    return new ProbeRenderD(data, scene);
                 case "ChargeRender":
                     return new ChargeRender(data, scene);
                 case "BulletRender":

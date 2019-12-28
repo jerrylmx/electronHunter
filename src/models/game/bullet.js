@@ -9,7 +9,7 @@ class Bullet {
         this.x = config.x;
         this.y = config.y;
         this.rotation = config.rotation;
-        this.ttl = 160;
+        this.ttl = config.ttl || 160;
         this.render = "BulletRender";
         World.add(Globals.engine.world, [this.createBody()]);
     }

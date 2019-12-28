@@ -9,6 +9,7 @@ require.config({
         'probeRenderA': 'renders/probeRenderA',
         'probeRenderB': 'renders/probeRenderB',
         'probeRenderC': 'renders/probeRenderC',
+        'probeRenderD': 'renders/probeRenderD',
         'leaderBoardRender': 'renders/leaderBoardRender',
         'chargeRender': 'renders/chargeRender',
         'bulletRender': 'renders/bulletRender',

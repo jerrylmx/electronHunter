@@ -8,5 +8,6 @@ class Utils {
         }
         return point;
     }
+
 }
 module.exports = Utils;

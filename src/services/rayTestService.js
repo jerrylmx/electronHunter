@@ -1,32 +1,20 @@
 const Matter = require("matter-js");
-const World = Matter.World,
-      Bodies = Matter.Bodies,
-      Body = Matter.Body,
-      Query = Matter.Query,
+const Query = Matter.Query,
       Composite = Matter.Composite
 const Globals = require("./globals");
 
 class RayTestService {
-    constructor(config = {}) {
+    constructor() {
         this.collisions = {};
-        this.poll = null;
-        this.rate = config.rate || 100;
-        this.started = false;
-
     }
 
-    start() {
+    clear() {
+        let ret = this.collisions;
         this.collisions = {};
-        this.started = true;
-    }
-
-    end() {
-        this.started = false;
-        return this.collisions;
+        return ret;
     }
 
     test(pt0, pt1) {
-        if (!this.started) return;
         let bodies = Composite.allBodies(Globals.engine.world);
         let res = Query.ray(bodies, pt0, pt1);
         res.forEach((item) => {

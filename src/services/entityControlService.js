@@ -4,7 +4,7 @@ const Globals = require("../services/globals");
 const ProbeA = require("../models/game/probeA");
 const ProbeB = require("../models/game/probeB");
 const ProbeC = require("../models/game/probeC");
-
+const ProbeD = require("../models/game/probeD");
 
 class EntityControlService {
 
@@ -26,13 +26,17 @@ class EntityControlService {
     spawnCharge() {
         setInterval(() => {
             if (Object.keys(Globals.entities).length < 100) {
-                let id = ++this.seq;
+                this.seq++;
                 let spawnLocation = SpawnService.getSpawnLocation();
-                let cfg = {...spawnLocation, id: id};
-                let charge = new Charge(cfg);
-                Globals.entities[id] = charge;
+                EntityControlService.spawnChargeAt(spawnLocation, this.seq);
             }
-        }, 1000)
+        }, 1000);
+    }
+
+    static spawnChargeAt(spawnLocation, id) {
+        let cfg = {...spawnLocation, id: id};
+        let charge = new Charge(cfg);
+        Globals.entities[id] = charge;
     }
 
     spawnProbe() {
@@ -41,7 +45,7 @@ class EntityControlService {
                 console.log("Register bot");
                 let id = ++this.seq;
                 let spawnLocation = SpawnService.getSpawnLocation();
-                let cfg = {...spawnLocation, id: id, name: id, isBot: true};
+                let cfg = {...spawnLocation, id: id, name: "BOT " + id, isBot: true};
                 let probe = EntityControlService.getRandomProbe(cfg);
                 Globals.entities[id] = probe;
             }
@@ -50,12 +54,14 @@ class EntityControlService {
 
     static getRandomProbe(cfg) {
         let rand = Math.random() * 10;
-        if (rand < 3) {
+        if (rand < 2.5) {
             return new ProbeA(cfg);
-        } else if (rand < 7) {
+        } else if (rand < 5) {
             return new ProbeB(cfg);
-        } else {
+        } else if (rand < 7.5) {
             return new ProbeC(cfg);
+        }  else {
+            return new ProbeD(cfg);
         }
     }
 

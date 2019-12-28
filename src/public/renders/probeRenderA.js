@@ -40,15 +40,6 @@ define(['Phaser'], function(Phaser) {
             this.phaserBody.name =  this.probeData.id;
             scene.maskContainer.add([this.phaserBody, this.infoBody, this.compassBody]);
 
-            // const line = new Phaser.Geom.Line(
-            //     this.phaserBody.x,
-            //     this.phaserBody.y,
-            //     this.phaserBody.x + 100,
-            //     this.phaserBody.y + 100
-            // );
-            // scene.graphics.lineStyle(2, 0x00ff00);
-            // scene.graphics.strokeLineShape(line);
-
             // Self init
             if (window.socket.id === this.probeData.id) {
                 window.me = this;
@@ -57,32 +48,12 @@ define(['Phaser'], function(Phaser) {
                     y: this.probeData.y,
                     key: 'mask',
                     add: false,
-                    scale: 4
+                    scale: this.probeData.visibility
                 });
                 scene.maskContainer.mask = new Phaser.Display.Masks.BitmapMask(scene, scene.spotlight);
                 scene.cameras.main.setBounds(0, 0, W, H);
                 scene.cameras.main.setZoom(1);
                 scene.cameras.main.startFollow(this.phaserBody);
-
-                // GUI
-                // Object.keys(window.entities).forEach((key) => {
-                //     if (window.entities[key].probeData && window.entities[key].probeData.render.includes("probe")) {
-                //         let target = window.entities[key].phaserBody;
-                //         let dir = new Phaser.Math.Vector2(target.x - this.phaserBody.x, target.y - this.phaserBody.y).normalize();
-                //         let angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI + 90;
-                //         let dx = Math.sin(Phaser.Math.DegToRad(angle)) * 200;
-                //         let dy = Math.cos(Phaser.Math.DegToRad(angle)) * -200;
-                //
-                //         let t = scene.add.sprite(dx, dy, 'target');
-                //         t.setScale(0.08);
-                //         t.scaleX = 0.12;
-                //         t.alpha = 0.9;
-                //         t.angle = angle;
-                //         t.name = key;
-                //         this.compassBody.add([t]);
-                //     }
-                // });
-
 
                 let arrow = scene.add.sprite(0, -300, 'arrow');
                 arrow.setScale(0.08);
@@ -106,26 +77,7 @@ define(['Phaser'], function(Phaser) {
                 scene.spotlight.x = this.phaserBody.x;
                 scene.spotlight.y = this.phaserBody.y;
                 this.watchKills(valDiff.kills, scene);
-
-                // GUI
-                // if (this.counter % 2 === 0) {
-                //     this.compassBody.removeAll();
-                //     Object.keys(window.entities).forEach((key) => {
-                //         if (window.entities[key].probeData && window.entities[key].probeData.render.includes("probe")) {
-                //             let target = window.entities[key].phaserBody;
-                //             let dir = new Phaser.Math.Vector2(target.x - this.phaserBody.x, target.y - this.phaserBody.y).normalize();
-                //             let angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI + 90;
-                //             let dx = Math.sin(Phaser.Math.DegToRad(angle)) * 250;
-                //             let dy = Math.cos(Phaser.Math.DegToRad(angle)) * -250;
-                //             let t = scene.add.sprite(dx, dy, 'target');
-                //             t.setScale(0.08);
-                //             t.scaleX = 0.12;
-                //             t.alpha = 0.9;
-                //             t.angle = angle;
-                //             this.compassBody.add([t]);
-                //         }
-                //     });
-                // }
+                this.watchDead(valDiff.dead, scene);
             } else {
                 this.phaserBody.angle = probeData.rotation;
             }
@@ -141,8 +93,6 @@ define(['Phaser'], function(Phaser) {
 
             this.patchChargeDiff(valDiff.charge, scene);
             this.patchFireDiff(valDiff.fireImpulse, scene);
-            this.watchDead(valDiff.dead, scene);
-
             this.counter++;
         }
 
@@ -263,7 +213,17 @@ define(['Phaser'], function(Phaser) {
         watchDead(diff, scene) {
             if (!diff) return;
             if (diff === 1) {
-
+                let anchorX = window.innerWidth / 2, anchorY = 300;
+                let msg = `You are eliminated!`;
+                let text = scene.add.text(anchorX, anchorY, msg, {
+                    fontFamily: '"Verdana"',
+                    fontSize: '50px'});
+                text.scrollFactorX = 0;
+                text.scrollFactorY = 0;
+                text.setOrigin(0.5);
+                setTimeout(() => {
+                    location.reload();
+                }, 3000);
             }
         }
 

@@ -79,6 +79,10 @@ class Charge {
                 this.destroy();
                 delete Globals.entities[this.id];
                 break;
+            case "ProbeRenderD":
+                this.destroy();
+                delete Globals.entities[this.id];
+                break;
             case "ChargeRender":
                 break;
             case "Laser":

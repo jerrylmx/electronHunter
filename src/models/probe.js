@@ -4,8 +4,22 @@ const World = Matter.World,
     Bodies = Matter.Bodies,
     Body = Matter.Body
 const Utils = require("../services/utils");
+const ProbeConstants = require("../services/probeConstants")
+// const EntityControlService = require("../services/entityControlService")
+const Charge = require("./game/charge")
+
 class Probe {
-    constructor(config) {
+    constructor(config, type = "") {
+        this.cfg = ProbeConstants.getConfig(type);
+        this.render = type;
+
+        this.visibility = this.cfg.visibility;
+        this.shootCd = this.cfg.cd;
+        this.speed = this.cfg.speed;
+        this.strength = this.cfg.strength;
+        this.ttl = this.cfg.ttl;
+        this.r = this.cfg.r;
+
         this.id = config.id;
         this.x = config.x;
         this.y = config.y;
@@ -13,11 +27,10 @@ class Probe {
         this.direction = {x: 1, y: 0};
         this.rotation = Math.atan2(1, 0) * 180 / Math.PI + 90;
         this.kills = 0;
-        this.dead = false;
+        this.dead = 0;
         this.charge = 1;
         this.fireImpulse = 0;
         this.isBot = config.isBot || false;
-
         Globals.probeEntities.push(this);
     }
 
@@ -43,6 +56,11 @@ class Probe {
             this.move({x: randX, y: randY});
         }
 
+        this.visibility = this.cfg.visibility + this.charge * this.cfg.deltaVisibility;
+        this.cfg.cd = ProbeConstants.getConfig(this.render).cd + this.charge * this.cfg.deltaCd;
+        this.speed = this.cfg.speed + this.charge * this.cfg.deltaSpeed;
+        this.strength = this.cfg.strength + this.charge * this.cfg.deltaStrength;
+        this.ttl = this.cfg.ttl + this.charge * this.cfg.deltaTtl;
         return myBody;
     }
 
@@ -51,39 +69,38 @@ class Probe {
         this.rotation = Math.atan2(dir.y, dir.x) * 180 / Math.PI + 90;
     }
 
-    hurt(killer) {
+    hurt(kid) {
+        let that = this;
         if (this.charge < 10) {
-            this.dead = true;
-            this.destroy();
-
+            this.dead = 1;
+            // Reward killer
+            let killer = Globals.entities[kid];
+            killer && killer.kills++;
+            setTimeout(() => {
+                that.destroy();
+            }, 100);
         } else {
             this.charge = Math.ceil(this.charge / 2);
         }
-        if (killer) {
-            this.dead && killer.kills && killer.kills++;
-        }
-
     }
 
     onCollision(body) {
-        let killer = this.dead ? body : null;
         switch (body.render) {
             case "ChargeRender":
                 this.charge++;
                 break;
             case "BulletRender":
-                this.hurt(killer);
+                this.hurt();
                 break;
             case "BulletMRender":
-                this.hurt(killer);
+                this.hurt();
                 break;
             case "Laser":
-                this.hurt(killer);
+                this.hurt(body.id);
                 break;
             default:
                 break;
         }
-        return killer;
     }
 
     destroy() {
@@ -96,6 +113,13 @@ class Probe {
         Globals.probeCount--;
         let index = Globals.probeEntities.indexOf(this);
         index > -1 && Globals.probeEntities.splice(index, 1);
+
+
+        for (let i = 0; i < this.charge; i++) {
+            let cid = Math.floor(Math.random() * 10000);
+            let cfg = {x: this.x, y: this.y + i  * 3, id: cid};
+            Globals.entities[cid] = new Charge(cfg);
+        }
     }
 }
 

@@ -21,7 +21,7 @@ class Globals {
             let target = Globals.entities[key];
             if (target && target.x && target.y)  {
                 let dist = Globals.dist(center, target);
-                if (dist < 500) {
+                if (dist < 800) {
                     frame.entities[key] = target;
                 }
             }
@@ -41,7 +41,7 @@ class Globals {
             }
             return a.id - b.id;
         }).map((entity) => {
-            return {id: entity.id, kills: entity.kills}
+            return {id: entity.name, kills: entity.kills}
         });
         if (sorted.length > 5) {
             return [sorted[0], sorted[1], sorted[2], sorted[3], sorted[4]]
