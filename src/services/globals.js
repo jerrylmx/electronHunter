@@ -100,6 +100,8 @@ Globals.entities = {};
 Globals.probeCount = 0;
 Globals.probeEntities = [];
 Globals.ranking = [];
+Globals.W = 500;
+Globals.H = 500;
 
 
 module.exports = Globals;

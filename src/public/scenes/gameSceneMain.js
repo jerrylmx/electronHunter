@@ -1,8 +1,8 @@
 define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'leaderBoardRender'],
     function($, Phaser, Mdiff, RenderFactory, msgpack, Fmanager, LeaderBoardRender){
     const GAME_SYNC = 'game.resp.sync';
-    const W = 5000;
-    const H = 5000;
+    const W = 500;
+    const H = 500;
     const PTR_DEBOUNCE_TIME = 50;
     const GAME_CTRL_PTR = "game.move";
     const GAME_FIRE = 'game.fire';

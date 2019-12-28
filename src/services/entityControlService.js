@@ -24,13 +24,13 @@ class EntityControlService {
     }
 
     spawnCharge() {
-        setInterval(() => {
-            if (Object.keys(Globals.entities).length < 100) {
-                this.seq++;
-                let spawnLocation = SpawnService.getSpawnLocation();
-                EntityControlService.spawnChargeAt(spawnLocation, this.seq);
-            }
-        }, 1000);
+        // setInterval(() => {
+        //     if (Object.keys(Globals.entities).length < 100) {
+        //         this.seq++;
+        //         let spawnLocation = SpawnService.getSpawnLocation();
+        //         EntityControlService.spawnChargeAt(spawnLocation, this.seq);
+        //     }
+        // }, 1000);
     }
 
     static spawnChargeAt(spawnLocation, id) {
@@ -39,15 +39,15 @@ class EntityControlService {
     }
 
     spawnProbe() {
-        setInterval(() => {
-            if (Globals.probeEntities.length < 10) {
-                console.log("Register bot");
-                let id = ++this.seq;
-                let spawnLocation = SpawnService.getSpawnLocation();
-                let cfg = {...spawnLocation, id: id, name: "BOT " + id, isBot: true};
-                Globals.entities[id] = EntityControlService.getRandomProbe(cfg);
-            }
-        }, 1000)
+        // setInterval(() => {
+        //     if (Globals.probeEntities.length < 10) {
+        //         console.log("Register bot");
+        //         let id = ++this.seq;
+        //         let spawnLocation = SpawnService.getSpawnLocation();
+        //         let cfg = {...spawnLocation, id: id, name: "BOT " + id, isBot: true};
+        //         Globals.entities[id] = EntityControlService.getRandomProbe(cfg);
+        //     }
+        // }, 1000)
     }
 
     static getRandomProbe(cfg) {
