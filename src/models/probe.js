@@ -51,7 +51,7 @@ class Probe {
         this.rotation = Math.atan2(dir.y, dir.x) * 180 / Math.PI + 90;
     }
 
-    hurt() {
+    hurt(killer) {
         if (this.charge < 10) {
             this.dead = true;
             this.destroy();
@@ -59,27 +59,30 @@ class Probe {
         } else {
             this.charge = Math.ceil(this.charge / 2);
         }
+        if (killer) {
+            this.dead && killer.kills && killer.kills++;
+        }
+
     }
 
     onCollision(body) {
+        let killer = this.dead ? body : null;
         switch (body.render) {
             case "ChargeRender":
                 this.charge++;
                 break;
             case "BulletRender":
-                this.hurt();
+                this.hurt(killer);
                 break;
             case "BulletMRender":
-                console.log("BulletRenderM");
-                this.hurt();
+                this.hurt(killer);
                 break;
             case "Laser":
-                this.hurt();
+                this.hurt(killer);
                 break;
             default:
                 break;
         }
-        let killer = this.dead ? body : null;
         return killer;
     }
 

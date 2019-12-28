@@ -58,7 +58,7 @@ class ProbeB extends Probe {
             res.forEach((collision) => {
                 let modelA = Globals.entities[collision.bodyA.label];
                 modelA && modelA.onCollision({render: "Laser"});
-                modelA.dead && this.kills++;
+                // modelA.dead && this.kills++;
             });
 
             setTimeout(() => {
