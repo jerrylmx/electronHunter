@@ -72,8 +72,14 @@ define([], function() {
                     let r = (new Date().getTime() - x2.time) / gap;
                     let dx = ref1.x - ref0.x;
                     let dy = ref1.y - ref0.y;
-                    res[key].x = ref0.x + dx * r;
-                    res[key].y = ref0.y + dy * r;
+                    let moveX = dx * r;
+                    let moveY = dy * r;
+                    if (moveX > 10 || moveY > 10) {
+                        continue;
+                    }
+
+                    res[key].x = ref0.x + moveX;
+                    res[key].y = ref0.y + moveY;
 
                     console.log("===============");
                     console.log(gap);
@@ -93,7 +99,7 @@ define([], function() {
         //
         frameValidate(frame) {
             // Directional score tolerance
-            let tol = 1;
+            let tol = 1.8;
             let frameNew = {
                 time: new Date().getTime(),
                 payload: {}
