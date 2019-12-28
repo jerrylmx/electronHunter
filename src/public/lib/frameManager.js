@@ -69,11 +69,18 @@ define([], function() {
                     continue;
                 } else {
                     let gap = x2.time - x1.time || this.rate;
-                    let r = (new Date().getTime() - x1.time) / gap;
+                    let r = (new Date().getTime() - x2.time) / gap;
                     let dx = ref1.x - ref0.x;
                     let dy = ref1.y - ref0.y;
                     res[key].x = ref0.x + dx * r;
                     res[key].y = ref0.y + dy * r;
+
+                    // console.log("===============");
+                    // console.log(gap);
+                    // console.log(r);
+                    // console.log(dx);
+                    // console.log(dx);
+                    // console.log("===============");
                 }
             }
             this.currentFrame = {
