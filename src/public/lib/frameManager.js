@@ -74,7 +74,8 @@ define([], function() {
                     let dy = ref1.y - ref0.y;
                     let moveX = dx * r;
                     let moveY = dy * r;
-                    if (moveX > 10 || moveY > 10) {
+
+                    if (Math.abs(moveX) > 10 || Math.abs(moveY) > 10) {
                         continue;
                     }
 
