@@ -68,7 +68,7 @@ define([], function() {
                 if (!ref1 || !ref1.x || !ref1.y || !ref0 || !ref0.x || !ref0.y) {
                     continue;
                 } else {
-                    let gap = x2.time - x1.time;
+                    let gap = x2.time - x1.time || this.rate;
                     let r = (new Date().getTime() - x1.time) / gap;
                     let dx = ref1.x - ref0.x;
                     let dy = ref1.y - ref0.y;
