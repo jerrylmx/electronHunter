@@ -38,15 +38,6 @@ define(['Phaser', 'jQuery'], function(Phaser, $) {
             this.phaserBody.name =  this.probeData.id;
             scene.maskContainer.add([this.phaserBody, this.infoBody]);
 
-            // const line = new Phaser.Geom.Line(
-            //     this.phaserBody.x,
-            //     this.phaserBody.y,
-            //     this.phaserBody.x + 100,
-            //     this.phaserBody.y + 100
-            // );
-            // scene.graphics.lineStyle(2, 0x00ff00);
-            // scene.graphics.strokeLineShape(line);
-
             // Self init
             if (window.socket.id === this.probeData.id) {
                 window.me = this;

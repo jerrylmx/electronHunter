@@ -58,6 +58,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             window.socket.on(GAME_SYNC, function (data) {
                 let bufView = new Uint8Array(data);
                 data = msgpack.decode(bufView);
+                data.entities = GameSceneMain.parse(data.entities);
                 if (!that.frame) {
                     that.frame = data;
                     GameSceneMain.guiInit(that);
@@ -156,6 +157,41 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             scene.dot.x = -58 + rightRatio * 58 * 2;
             scene.dot.y = -58 + botRatio * 58 * 2;
             scene.lb.update(scene.frame.ranking, scene);
+        }
+
+        static parse(entities) {
+            let parsed = {};
+            let syntax = [
+                'id',
+                'name',
+                'x',
+                'y',
+                'direction',
+                'rotation',
+                'kills',
+                'dead',
+                'charge',
+                'fireImpulse',
+                'visibility',
+                'render',
+                'laserState',
+                'hidden',
+                'ttl',
+                'acc'
+            ];
+
+            Object.keys(entities).forEach((id) => {
+                let data = entities[id];
+                let parsedEntry = {}
+                for (let i = 0; i < data.length; i++) {
+                    parsedEntry[syntax[i]] = data[i];
+                    if (syntax[i] === 'direction' && data[i]) {
+                        parsedEntry[syntax[i]] = {x: data[i][0], y: data[i][1]}
+                    }
+                }
+                parsed[id] = parsedEntry;
+            });
+            return parsed;
         }
     }
 });

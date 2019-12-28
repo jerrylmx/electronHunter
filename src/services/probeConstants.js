@@ -62,7 +62,7 @@ class ProbeConstants {
                     // Gain per charge
                     deltaVisibility: 0.4,
                     deltaCd: -0.05,
-                    deltaSpeed: 0.2,
+                    deltaSpeed: 0.01,
                     deltaStrength: 0,
                     deltaTtl: 0,
                 };

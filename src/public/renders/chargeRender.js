@@ -33,6 +33,7 @@ define([], function() {
 
             scene.maskContainer.add([this.phaserBody]);
 
+            let that = this;
             scene.add.tween({
                 targets: [this.phaserBody],
                 alpha: { value: 1, duration: 5000, ease: 'Power1' },

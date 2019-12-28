@@ -8,21 +8,21 @@ class Globals {
             return {
                 ranking: Globals.getTop5(),
                 rate: process.env.SERVER_RATE || SERVER_RATE_DEFAULT,
-                entities: Globals.entities
+                entities: Globals.compressEntity(Globals.entities)
             }
         }
         let frame = {
             ranking: Globals.getTop5(),
             rate: process.env.SERVER_RATE || SERVER_RATE_DEFAULT,
             entities: {}
-        }
+        };
         let center = {x: Globals.entities[id].x, y: Globals.entities[id].y};
         Object.keys(Globals.entities).forEach((key) => {
             let target = Globals.entities[key];
             if (target && target.x && target.y)  {
                 let dist = Globals.dist(center, target);
                 if (dist < 800) {
-                    frame.entities[key] = target;
+                    frame.entities[key] = Globals.compressEntity(target);
                 }
             }
         });
@@ -30,9 +30,40 @@ class Globals {
         return frame;
     }
 
+    static compress(entities) {
+        Object.keys(entities).forEach((id) => {
+            entities[id] = Globals.compressEntity(entities[id]);
+        });
+    }
+
+    static compressEntity(entity) {
+        return [
+            // Common
+            entity.id,
+            entity.name,
+            entity.x,
+            entity.y,
+            entity.direction? [entity.direction.x, entity.direction.y] : null,
+            entity.rotation,
+            entity.kills,
+            entity.dead,
+            entity.charge,
+            entity.fireImpulse,
+            entity.visibility,
+            entity.render,
+
+            // Specials
+            entity.laserState,
+            entity.hidden,
+            entity.ttl,
+            entity.acc
+        ]
+    }
+
     static dist(a, b) {
         return Math.sqrt(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2));
     }
+
     static getTop5() {
         let sorted = Globals.probeEntities.sort((a, b) => {
             let n = b.kills - a.kills;
@@ -41,7 +72,7 @@ class Globals {
             }
             return a.id - b.id;
         }).map((entity) => {
-            return {id: entity.name, kills: entity.kills}
+            return [entity.name, entity.kills];
         });
         if (sorted.length > 5) {
             return [sorted[0], sorted[1], sorted[2], sorted[3], sorted[4]]

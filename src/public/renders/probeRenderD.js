@@ -54,12 +54,6 @@ define(['Phaser'], function(Phaser) {
                 scene.cameras.main.setBounds(0, 0, W, H);
                 scene.cameras.main.setZoom(1);
                 scene.cameras.main.startFollow(this.phaserBody);
-
-                let arrow = scene.add.sprite(0, -300, 'arrow');
-                arrow.setScale(0.08);
-                arrow.alpha = 0.5;
-                window.me.phaserBody.add([arrow]);
-
             }
         }
 
@@ -91,8 +85,9 @@ define(['Phaser'], function(Phaser) {
                     35);
             }
 
-            this.patchChargeDiff(valDiff.charge, scene);
-            this.patchFireDiff(valDiff.fireImpulse, scene);
+            this.watchChargeDiff(valDiff.charge, scene);
+            this.watchFireDiff(valDiff.fireImpulse, scene);
+            this.watchAcc(valDiff.acc, scene);
             this.counter++;
         }
 
@@ -150,7 +145,7 @@ define(['Phaser'], function(Phaser) {
             this.infoBody.add([dot]);
         }
 
-        patchChargeDiff(diff, scene) {
+        watchChargeDiff(diff, scene) {
             if (!diff) return;
             if (diff > 0) {
                 for (let i = 0; i < Math.abs(diff); i++) {
@@ -164,7 +159,7 @@ define(['Phaser'], function(Phaser) {
             }
         }
 
-        patchFireDiff(diff, scene) {
+        watchFireDiff(diff, scene) {
             if (!diff) return;
             if (Math.abs(diff)) {
                 let glow = scene.add.sprite(0, -5, 'fireGlow');
@@ -224,6 +219,32 @@ define(['Phaser'], function(Phaser) {
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
+            }
+        }
+
+        watchAcc(diff, scene) {
+            if (!diff) return
+            if (diff > 0) {
+                let particles = scene.add.particles('flares');
+                particles.createEmitter({
+                    frame: ['white'],
+                    x: 0,
+                    y: 0,
+                    lifespan: 200,
+                    speed: { min: 100, max: 200 },
+                    angle: 90,
+                    tint: [0xffff82],
+                    scale: { start: 0.4, end: 0 },
+                    quantity: 1,
+                    frequency: 50,
+                    blendMode: 'ADD'
+                });
+                particles.setVisible(true);
+                particles.name = "A";
+                this.phaserBody.add([particles]);
+            } else {
+                let p = this.phaserBody.getByName("A");
+                p && p.destroy();
             }
         }
 

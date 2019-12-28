@@ -29,7 +29,7 @@ define([], function() {
         update(ranking, scene) {
             for (let i = 0; i < ranking.length; i++) {
                 if (i < 5) {
-                    let text = ranking[i].id + "  " +   ranking[i].kills + "kills";
+                    let text = ranking[i][0] + "  " +   ranking[i][1] + "kills";
                     let row = `${i}.  ${text}`;
                     if (row !== this.phaserBody.getAll()[i+1]._text) {
                         this.phaserBody.getAll()[i+1].setText(row);

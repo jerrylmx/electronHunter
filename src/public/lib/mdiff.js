@@ -33,7 +33,12 @@ define([], function() {
             toUpdate.forEach((entity) => {
                 res[entity.id] = {};
                 Object.keys(entity).forEach((key) => {
-                    res[entity.id][key] = this.frameNew[entity.id][key] - this.frameOld[entity.id][key];
+                    if (this.frameNew[entity.id][key] === undefined ||
+                        this.frameOld[entity.id][key] === undefined) {
+                        res[entity.id][key] = 0;
+                    } else {
+                        res[entity.id][key] = this.frameNew[entity.id][key] - this.frameOld[entity.id][key];
+                    }
                 });
             });
             return res;

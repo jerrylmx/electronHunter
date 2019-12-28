@@ -35,19 +35,17 @@ class EntityControlService {
 
     static spawnChargeAt(spawnLocation, id) {
         let cfg = {...spawnLocation, id: id};
-        let charge = new Charge(cfg);
-        Globals.entities[id] = charge;
+        Globals.entities[id] = new Charge(cfg);
     }
 
     spawnProbe() {
         setInterval(() => {
-            if (Globals.probeCount < 10) {
+            if (Globals.probeEntities.length < 10) {
                 console.log("Register bot");
                 let id = ++this.seq;
                 let spawnLocation = SpawnService.getSpawnLocation();
                 let cfg = {...spawnLocation, id: id, name: "BOT " + id, isBot: true};
-                let probe = EntityControlService.getRandomProbe(cfg);
-                Globals.entities[id] = probe;
+                Globals.entities[id] = EntityControlService.getRandomProbe(cfg);
             }
         }, 1000)
     }
