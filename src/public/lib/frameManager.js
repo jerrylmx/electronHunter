@@ -81,13 +81,6 @@ define([], function() {
 
                     res[key].x = ref0.x + moveX;
                     res[key].y = ref0.y + moveY;
-
-                    console.log("===============");
-                    console.log(gap);
-                    console.log(r);
-                    console.log(dx);
-                    console.log(dx);
-                    console.log("===============");
                 }
             }
             this.currentFrame = {
