@@ -75,7 +75,7 @@ define([], function() {
                     let moveX = dx * r;
                     let moveY = dy * r;
 
-                    if (Math.abs(moveX) > 10 || Math.abs(moveY) > 10) {
+                    if (gap < 10 && (Math.abs(moveX) > 10 || Math.abs(moveY) > 10)) {
                         continue;
                     }
 
