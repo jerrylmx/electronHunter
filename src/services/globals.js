@@ -70,7 +70,7 @@ class Globals {
             if (n !== 0) {
                 return n;
             }
-            return a.id - b.id;
+            return Math.random() - 0.5;
         }).map((entity) => {
             return [entity.name, entity.kills];
         });
@@ -100,8 +100,8 @@ Globals.entities = {};
 Globals.probeCount = 0;
 Globals.probeEntities = [];
 Globals.ranking = [];
-Globals.W = 500;
-Globals.H = 500;
+Globals.W = 5000;
+Globals.H = 5000;
 
 
 module.exports = Globals;

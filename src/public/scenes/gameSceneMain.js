@@ -1,8 +1,8 @@
 define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'leaderBoardRender'],
     function($, Phaser, Mdiff, RenderFactory, msgpack, Fmanager, LeaderBoardRender){
     const GAME_SYNC = 'game.resp.sync';
-    const W = 500;
-    const H = 500;
+    const W = 5000;
+    const H = 5000;
     const PTR_DEBOUNCE_TIME = 50;
     const GAME_CTRL_PTR = "game.move";
     const GAME_FIRE = 'game.fire';
@@ -23,6 +23,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             this.load.image('bullet', 'assets/bullet.png');
             this.load.image('bulletM', 'assets/bulletM.png');
             this.load.image('laser', 'assets/laser.png');
+            this.load.image('laser2', 'assets/laser2.png');
             this.load.atlas('flares', 'assets/flares.png', 'assets/flares.json');
             this.load.image('radar', 'assets/radar.png');
             this.load.image('arrow', 'assets/arrow.png');
@@ -31,6 +32,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             this.load.image('probeB', 'assets/probes/probeB.png');
             this.load.image('probeC', 'assets/probes/probeC.png');
             this.load.image('probeD', 'assets/probes/probeD.png');
+            this.load.image('probeE', 'assets/probes/probeE.png');
         }
 
         create(frameInit) {

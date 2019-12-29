@@ -66,6 +66,22 @@ class ProbeConstants {
                     deltaStrength: 0,
                     deltaTtl: 0,
                 };
+            case "ProbeRenderE":
+                return {
+                    r: 40,
+                    visibility: 6,
+                    cd: 40,
+                    speed: 3,
+                    strength: 40,
+                    ttl: 500,
+
+                    // Gain per charge
+                    deltaVisibility: 0.4,
+                    deltaCd: -0.05,
+                    deltaSpeed: 0.1,
+                    deltaStrength: 0,
+                    deltaTtl: 0,
+                };
             default:
                 return;
         }

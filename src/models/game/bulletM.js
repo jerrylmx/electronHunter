@@ -53,6 +53,14 @@ class BulletM {
                 this.destroy();
                 killer && body.charge < 10 && killer.kills++;
                 break;
+            case "ProbeRenderD":
+                this.destroy();
+                killer && body.charge < 10 && killer.kills++;
+                break;
+            case "ProbeRenderE":
+                this.destroy();
+                killer && body.charge < 10 && killer.kills++;
+                break;
             case "ChargeRender":
                 this.destroy();
                 break;
