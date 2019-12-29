@@ -154,9 +154,9 @@ define(['Phaser', 'jQuery'], function(Phaser, $) {
                         this.animationLock = false;
                     }, 200);
                 }
-                for (let i = 0; i < Math.abs(diff); i++) {
-                    this.renderCharge(scene);
-                }
+                // for (let i = 0; i < Math.abs(diff); i++) {
+                //     this.renderCharge(scene);
+                // }
             } else {
                 if (!this.animationLock) {
                     this.animationLock = true;
@@ -171,10 +171,10 @@ define(['Phaser', 'jQuery'], function(Phaser, $) {
                         this.animationLock = false;
                     }, 200);
                 }
-                for (let i = 0; i < Math.abs(diff); i++) {
-                    let toRm = this.charges.shift();
-                    this.infoBody.remove(toRm);
-                }
+                // for (let i = 0; i < Math.abs(diff); i++) {
+                //     let toRm = this.charges.shift();
+                //     this.infoBody.remove(toRm);
+                // }
             }
         }
 

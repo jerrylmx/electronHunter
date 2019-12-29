@@ -155,9 +155,9 @@ define(['Phaser'], function(Phaser) {
             if (!diff) return;
             let that = this;
             if (diff > 0) {
-                for (let i = 0; i < Math.abs(diff); i++) {
-                    this.renderCharge(scene);
-                }
+                // for (let i = 0; i < Math.abs(diff); i++) {
+                //     this.renderCharge(scene);
+                // }
                 if (!this.animationLock) {
                     this.animationLock = true;
                     scene.add.tween({
@@ -184,10 +184,10 @@ define(['Phaser'], function(Phaser) {
                         this.animationLock = false;
                     }, 200);
                 }
-                for (let i = 0; i < Math.abs(diff); i++) {
-                    let toRm = this.charges.shift();
-                    this.infoBody.remove(toRm);
-                }
+                // for (let i = 0; i < Math.abs(diff); i++) {
+                //     let toRm = this.charges.shift();
+                //     this.infoBody.remove(toRm);
+                // }
             }
         }
 
@@ -198,13 +198,11 @@ define(['Phaser'], function(Phaser) {
                 glow.setScale(0.1);
                 glow.alpha = 0.2;
                 this.phaserBody.add([glow]);
-
                 scene.add.tween({
                     targets: [glow],
                     alpha: { value: 0, duration: 100, ease: 'Power1' },
                     loop: 0
                 });
-
                 setTimeout(() => {
                     this.phaserBody.remove(glow);
                 }, 100);
