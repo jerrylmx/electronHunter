@@ -7,6 +7,7 @@ define(['Phaser'], function(Phaser) {
             this.probeData = probeData;
             this.phaserBody = scene.add.container(probeData.x, probeData.y);
             this.infoBody = scene.add.container(probeData.x, probeData.y);
+            this.animationLock = false;
 
             let probe = scene.add.sprite(0, 0, 'probeC');
             probe.name = this.probeData.id;
@@ -158,10 +159,35 @@ define(['Phaser'], function(Phaser) {
         patchChargeDiff(diff, scene) {
             if (!diff) return;
             if (diff > 0) {
+                if (!this.animationLock) {
+                    this.animationLock = true;
+                    scene.add.tween({
+                        targets: [this.phaserBody],
+                        alpha: { value: 0.2, duration: 50, ease: 'Power1' },
+                        loop: 0,
+                        yoyo: true,
+                    });
+                    setTimeout(() => {
+                        this.animationLock = false;
+                    }, 200);
+                }
                 for (let i = 0; i < Math.abs(diff); i++) {
                     this.renderCharge(scene);
                 }
             } else {
+                if (!this.animationLock) {
+                    this.animationLock = true;
+                    scene.add.tween({
+                        targets: [this.phaserBody],
+                        alpha: { value: 0, duration: 50, ease: 'Power1' },
+                        loop: 0,
+                        repeat: 2,
+                        yoyo: true,
+                    });
+                    setTimeout(() => {
+                        this.animationLock = false;
+                    }, 200);
+                }
                 for (let i = 0; i < Math.abs(diff); i++) {
                     let toRm = this.charges.shift();
                     this.infoBody.remove(toRm);

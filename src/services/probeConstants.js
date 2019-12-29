@@ -4,7 +4,7 @@ class ProbeConstants {
             case "ProbeRenderA":
                 return {
                     r: 30,
-                    visibility: 4,
+                    visibility: 5,
                     cd: 30,
                     speed: 6,
                     strength: 40,
@@ -53,7 +53,7 @@ class ProbeConstants {
             case "ProbeRenderD":
                 return {
                     r: 20,
-                    visibility: 4,
+                    visibility: 5,
                     cd: 30,
                     speed: 8,
                     strength: 30,
@@ -69,7 +69,7 @@ class ProbeConstants {
             case "ProbeRenderE":
                 return {
                     r: 40,
-                    visibility: 6,
+                    visibility: 8,
                     cd: 40,
                     speed: 3,
                     strength: 40,

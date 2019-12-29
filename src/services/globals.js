@@ -70,7 +70,7 @@ class Globals {
             if (n !== 0) {
                 return n;
             }
-            return Math.random() - 0.5;
+            return b.charge - a.charge;
         }).map((entity) => {
             return [entity.name, entity.kills];
         });
