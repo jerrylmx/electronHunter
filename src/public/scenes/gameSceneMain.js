@@ -33,6 +33,8 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             this.load.image('probeC', 'assets/probes/probeC.png');
             this.load.image('probeD', 'assets/probes/probeD.png');
             this.load.image('probeE', 'assets/probes/probeE.png');
+            this.load.image('icon1', 'assets/icon1.png');
+            this.load.image('icon2', 'assets/icon2.png');
         }
 
         create(frameInit) {
@@ -146,6 +148,24 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             scene.dot = dot;
             radarContainer.add([radar,dot]);
 
+            let chargeIcon = scene.add.sprite(50, window.innerHeight - 50, "icon1");
+            chargeIcon.setScale(0.05);
+            chargeIcon.scrollFactorX = 0;
+            chargeIcon.scrollFactorY = 0;
+
+
+            let killIcon = scene.add.sprite(110, window.innerHeight - 48, "icon2");
+            killIcon.setScale(0.04);
+            killIcon.scrollFactorX = 0;
+            killIcon.scrollFactorY = 0;
+
+            scene.charge = scene.add.text(60, window.innerHeight - 55, "0");
+            scene.charge.scrollFactorX = 0;
+            scene.charge.scrollFactorY = 0;
+            scene.kill = scene.add.text(124, window.innerHeight - 55, "0");
+            scene.kill.scrollFactorX = 0;
+            scene.kill.scrollFactorY = 0;
+
             if (scene.frame) {
                 scene.lb = new LeaderBoardRender(scene.frame.ranking, scene);
             }
@@ -159,6 +179,8 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             scene.dot.x = -58 + rightRatio * 58 * 2;
             scene.dot.y = -58 + botRatio * 58 * 2;
             scene.lb.update(scene.frame.ranking, scene);
+            scene.charge.setText(window.me.probeData.charge);
+            scene.kill.setText(window.me.probeData.kills);
         }
 
         static parse(entities) {

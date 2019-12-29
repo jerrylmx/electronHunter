@@ -7,7 +7,6 @@ define(['Phaser'], function(Phaser) {
             this.probeData = probeData;
             this.phaserBody = scene.add.container(probeData.x, probeData.y);
             this.infoBody = scene.add.container(probeData.x, probeData.y);
-            this.compassBody = scene.add.container(probeData.x, probeData.y);
             this.animationLock = false;
 
             let probe = scene.add.sprite(0, 0, 'probeD');
@@ -39,7 +38,7 @@ define(['Phaser'], function(Phaser) {
             this.infoBody.add([...this.charges, name]);
             this.renderBaseParticle(scene);
             this.phaserBody.name =  this.probeData.id;
-            scene.maskContainer.add([this.phaserBody, this.infoBody, this.compassBody]);
+            scene.maskContainer.add([this.phaserBody, this.infoBody]);
 
             // Self init
             if (window.socket.id === this.probeData.id) {
@@ -64,8 +63,6 @@ define(['Phaser'], function(Phaser) {
             this.phaserBody.y = probeData.y;
             this.infoBody.x = probeData.x;
             this.infoBody.y = probeData.y;
-            this.compassBody.x = probeData.x;
-            this.compassBody.y = probeData.y;
 
             // Self update
             if (window.socket.id === this.probeData.id) {
