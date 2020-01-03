@@ -15,6 +15,8 @@ const Wall = require("./models/game/wall");
 
 
 let clients = {};
+let cost = 0;
+let gap = 0;
 app.use(express.static(__dirname + "/public"));
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/public/index.html");
@@ -59,22 +61,28 @@ http.listen(port, () => console.log(`Game server running on port ${port}!`));
 
 // Server loop
 setInterval(function () {
+    let t1 = new Date().getTime();
     Object.keys(clients).forEach((id) => {
         clients[id].emit("game.resp.sync", msgpack.encode(Globals.packFrameData(id)));
     });
+    gap = new Date().getTime() - t1;
 }, Globals.SERVER_RATE);
 
 setInterval(function () {
+    let t1 = new Date().getTime();
     Engine.update(Globals.engine);
     Object.keys(Globals.entities).forEach((key) => {
         Globals.entities[key].sync();
     });
+    cost = new Date().getTime() - t1;
 }, Globals.SERVER_RATE);
 
 // Server state logging
 setInterval(function () {
     console.log(`Entity count: ${Object.keys(Globals.entities).length}`);
     console.log(`Probe count: ${Object.keys(Globals.probeEntities).length}`);
+    console.log(`Sync cost: ${cost}`);
+    console.log(`Sync gap: ${gap}`);
 }, 10000);
 
 let entityCtrl = new EntityControlService();
