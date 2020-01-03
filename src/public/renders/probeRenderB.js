@@ -1,58 +1,20 @@
-define(['Phaser', 'jQuery'], function(Phaser, $) {
+define(['Phaser', 'jQuery', 'common'], function(Phaser, $, Common) {
     const W = 5000;
     const H = 5000;
     return class ProbeRender {
         constructor(probeData, scene) {
+            this.counter = 0;
             this.probeData = probeData;
-            this.phaserBody = scene.add.container(probeData.x, probeData.y);
-            this.infoBody = scene.add.container(probeData.x, probeData.y);
             this.animationLock = false;
+            this.phaserBody = Common.renderProbeBody(probeData, scene);
+            this.infoBody = Common.renderProbeInfo(probeData, scene);
+            this.phaserBody.add([Common.renderBaseParticle(scene)]);
 
-            let probe = scene.add.sprite(0, 0, 'probeB');
-            probe.name = this.probeData.id;
-            probe.depth = 1;
-            probe.setScale(0.1);
-
-            let shadow = scene.add.sprite(0, 0, 'shadow');
-            shadow.name = this.probeData.id + "shadow";
-            shadow.depth = 1;
-            shadow.tint = 0x000000;
-            shadow.alpha = 0.3;
-            shadow.setScale(0.12);
-
-            let name = scene.add.text(0, -55, probeData.name, {
-                fontFamily: '"Verdana"',
-                strokeThickness: 1
-            });
-            name.setAlpha(0.8);
-            name.setOrigin(0.5);
-
-            // HP
-            this.charges = [];
-            for (let i = 0; i < Math.abs(probeData.charge); i++) {
-                this.renderCharge(scene);
-            }
-
-            this.phaserBody.add([shadow, probe]);
-            this.infoBody.add([...this.charges, name]);
-            this.renderBaseParticle(scene);
-            this.phaserBody.name =  this.probeData.id;
             scene.maskContainer.add([this.phaserBody, this.infoBody]);
 
-            // Self init
             if (window.socket.id === this.probeData.id) {
                 window.me = this;
-                scene.spotlight = scene.make.sprite({
-                    x: this.probeData.x,
-                    y: this.probeData.y,
-                    key: 'mask',
-                    add: false,
-                    scale: this.probeData.visibility
-                });
-                scene.maskContainer.mask = new Phaser.Display.Masks.BitmapMask(scene, scene.spotlight);
-                scene.cameras.main.setBounds(0, 0, W, H);
-                scene.cameras.main.setZoom(1);
-                scene.cameras.main.startFollow(this.phaserBody);
+                Common.renderProbeIfSelf(probeData, this.phaserBody, scene);
             }
         }
 
@@ -74,15 +36,6 @@ define(['Phaser', 'jQuery'], function(Phaser, $) {
             }
 
 
-            for (let i = 0; i < this.charges.length; i++) {
-                Phaser.Actions.RotateAroundDistance(
-                    [this.charges[i]],
-                    { x: 0, y: 0 },
-                    0.05*(i+1),
-                    35);
-            }
-
-            this.patchChargeDiff(valDiff.charge, scene);
             this.watchFireDiff(valDiff.laserState, scene);
         }
 
@@ -128,15 +81,6 @@ define(['Phaser', 'jQuery'], function(Phaser, $) {
             particles.setVisible(true);
             particles.name = "baseParticle";
             this.phaserBody.add([particles]);
-        }
-
-        renderCharge(scene) {
-            let dot = scene.add.sprite(0, 0, 'dot');
-            dot.tint = 0xF0F0F0;
-            dot.alpha = 0.5;
-            dot.setScale(0.04);
-            this.charges.push(dot);
-            this.infoBody.add([dot]);
         }
 
         patchChargeDiff(diff, scene) {

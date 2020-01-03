@@ -24,6 +24,7 @@ class Probe {
         this.x = config.x;
         this.y = config.y;
         this.name = config.name;
+        this.color = config.color;
         this.direction = {x: 1, y: 0};
         this.rotation = Math.atan2(1, 0) * 180 / Math.PI + 90;
         this.kills = 0;

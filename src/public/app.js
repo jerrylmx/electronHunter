@@ -6,6 +6,7 @@ require.config({
         'scenePrompt': 'scenes/gameScenePrompt',
         'sceneMain': 'scenes/gameSceneMain',
         'mdiff': 'lib/mdiff',
+        'common': 'renders/common',
         'probeRenderA': 'renders/probeRenderA',
         'probeRenderB': 'renders/probeRenderB',
         'probeRenderC': 'renders/probeRenderC',

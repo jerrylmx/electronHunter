@@ -45,13 +45,18 @@ class EntityControlService {
                 console.log("Register bot");
                 let id = ++this.seq;
                 let spawnLocation = SpawnService.getSpawnLocation();
-                let cfg = {...spawnLocation, id: id, name: "BOT " + id, isBot: true};
+                let cfg = {...spawnLocation,
+                           id: id,
+                           name: "BOT " + id,
+                           isBot: true
+                };
                 Globals.entities[id] = EntityControlService.getRandomProbe(cfg);
             }
         }, 1000)
     }
 
     static getRandomProbe(cfg) {
+        cfg = {...cfg, color: Globals.getRandomColor()};
         let rand = Math.random() * 10;
         if (rand < 2) {
             return new ProbeA(cfg);

@@ -5,6 +5,8 @@ define(['jQuery', 'Phaser', 'msgpack'], function($, Phaser, msgpack){
     const GAME_JOIN = 'game.join';
     const PING_TEST = 'ping.test';
     const PONG_TEST = 'pong.test';
+    window.W = 5000;
+    window.H = 5000;
 
     return class GameScenePrompt extends Phaser.Scene {
         constructor() {

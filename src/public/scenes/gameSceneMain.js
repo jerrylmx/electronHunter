@@ -29,9 +29,13 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             this.load.image('arrow', 'assets/arrow.png');
             this.load.image('target', 'assets/target.png');
             this.load.image('probeA', 'assets/probes/probeA.png');
+            this.load.image('probeA_base', 'assets/probes/probeA_base.png');
             this.load.image('probeB', 'assets/probes/probeB.png');
+            this.load.image('probeB_base', 'assets/probes/probeB_base.png');
             this.load.image('probeC', 'assets/probes/probeC.png');
+            this.load.image('probeC_base', 'assets/probes/probeC_base.png');
             this.load.image('probeD', 'assets/probes/probeD.png');
+            this.load.image('probeD_base', 'assets/probes/probeD_base.png');
             this.load.image('probeE', 'assets/probes/probeE.png');
             this.load.image('icon1', 'assets/icon1.png');
             this.load.image('icon2', 'assets/icon2.png');
@@ -188,6 +192,8 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             let syntax = [
                 'id',
                 'name',
+                'r',
+                'color',
                 'x',
                 'y',
                 'direction',
@@ -204,9 +210,11 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
                 'acc'
             ];
 
-            Object.keys(entities).forEach((id) => {
+            for (let j = 0; j < Object.keys(entities).length; j++) {
+                let id = Object.keys(entities)[j];
                 let data = entities[id];
-                let parsedEntry = {}
+                let parsedEntry = {};
+                if (!data) continue;
                 for (let i = 0; i < data.length; i++) {
                     parsedEntry[syntax[i]] = data[i];
                     if (syntax[i] === 'direction' && data[i]) {
@@ -214,7 +222,8 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
                     }
                 }
                 parsed[id] = parsedEntry;
-            });
+
+            }
             return parsed;
         }
     }

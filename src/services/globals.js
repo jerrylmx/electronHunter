@@ -41,6 +41,8 @@ class Globals {
             // Common
             entity.id,
             entity.name,
+            entity.r,
+            entity.color,
             entity.x,
             entity.y,
             entity.direction? [entity.direction.x, entity.direction.y] : null,
@@ -60,11 +62,11 @@ class Globals {
         ]
     }
 
-    static dist(a, b) {
+    static dist (a, b) {
         return Math.sqrt(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2));
     }
 
-    static getTop5() {
+    static getTop5 () {
         let sorted = Globals.probeEntities.sort((a, b) => {
             let n = b.kills - a.kills;
             if (n !== 0) {
@@ -79,6 +81,12 @@ class Globals {
         } else {
             return sorted;
         }
+    }
+
+    static getRandomColor() {
+        const COLORS = [0x123456, 0x006800, 0x007073, 0x6E3900, 0x640000, 0x4B0078, 0x90014F];
+        return COLORS[Math.floor(Math.random() * COLORS.length)];
+
     }
 
 }
