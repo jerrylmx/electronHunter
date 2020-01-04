@@ -2,19 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7dad9de-6690-487f-a7b3-a3cd453f4c14" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/public/assets/probes/probeB_base.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/probes/probeC_base.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/probes/probeD_base.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/charge.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/probes/probe1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/assets/probes/probeE_base.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/game/bullet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/game/bullet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/game/bulletM.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/game/bulletM.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/game/charge.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/game/charge.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/probe.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/probe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/assets/probes/probeE.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/assets/probes/probeE.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/renders/chargeRender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/chargeRender.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/public/renders/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderA.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderA.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderB.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderB.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderC.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderC.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderD.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderD.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderE.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderE.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/public/scenes/gameSceneMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/scenes/gameSceneMain.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/scenes/gameScenePrompt.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/scenes/gameScenePrompt.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/entityControlService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/entityControlService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/globals.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/globals.js" afterDir="false" />
     </list>
@@ -30,19 +34,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/models/probe.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderA.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="13" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="17" selection-end-column="13" />
+            <state relative-caret-position="126">
+              <caret line="7" column="26" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -50,17 +45,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="12" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="17" selection-end-column="13" />
+            <state relative-caret-position="378">
+              <caret line="21" column="70" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderC.js">
+        <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderE.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="17" selection-end-column="13" />
+            <state relative-caret-position="2916">
+              <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
             </state>
           </provider>
         </entry>
@@ -68,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/scenes/gameSceneMain.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
+            <state relative-caret-position="3312">
+              <caret line="184" column="48" lean-forward="true" selection-start-line="184" selection-start-column="48" selection-end-line="184" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -77,40 +72,48 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/renders/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="50" lean-forward="true" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+            <state relative-caret-position="3528">
+              <caret line="196" column="49" selection-start-line="196" selection-start-column="49" selection-end-line="196" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderD.js">
+        <entry file="file://$PROJECT_DIR$/src/services/entityControlService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="165" column="36" lean-forward="true" selection-start-line="165" selection-start-column="36" selection-end-line="165" selection-end-column="36" />
+            <state relative-caret-position="954">
+              <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/assets/probes/probeC_base.png">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/src/services/globals.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/services/entityControlService.js">
+        <entry file="file://$PROJECT_DIR$/src/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="67" column="35" lean-forward="true" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+            <state relative-caret-position="328">
+              <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+              <folding>
+                <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/ioHandler.js">
+        <entry file="file://$PROJECT_DIR$/src/models/game/wall.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+            <state relative-caret-position="342">
+              <caret line="19" column="74" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -127,15 +130,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>'request</find>
-      <find>self</find>
-      <find>fireImpulse</find>
       <find>ProbeRender</find>
       <find>watchFireDiff</find>
       <find>Matter</find>
       <find>World</find>
       <find>test</find>
-      <find>watchKills</find>
       <find>guiInit</find>
       <find>Bullet</find>
       <find>entity</find>
@@ -157,6 +156,10 @@
       <find>charges</find>
       <find>CHARGE</find>
       <find>charge</find>
+      <find>watchKills</find>
+      <find>.btn-primary:hover</find>
+      <find>attrac</find>
+      <find>animation</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -182,44 +185,45 @@
         <option value="$PROJECT_DIR$/src/server.js" />
         <option value="$PROJECT_DIR$/src/public/renders/bulletMRender.js" />
         <option value="$PROJECT_DIR$/src/models/game/probeC.js" />
-        <option value="$PROJECT_DIR$/src/public/index.html" />
         <option value="$PROJECT_DIR$/src/services/rayTestService.js" />
         <option value="$PROJECT_DIR$/src/models/game/probeB.js" />
         <option value="$PROJECT_DIR$/src/models/game/probeD.js" />
         <option value="$PROJECT_DIR$/src/models/game/probeA.js" />
         <option value="$PROJECT_DIR$/src/services/utils.js" />
         <option value="$PROJECT_DIR$/src/public/renders/leaderBoardRender.js" />
-        <option value="$PROJECT_DIR$/src/public/renders/chargeRender.js" />
         <option value="$PROJECT_DIR$/src/public/lib/mdiff.js" />
         <option value="$PROJECT_DIR$/src/models/game/wall.js" />
         <option value="$PROJECT_DIR$/src/public/lib/frameManager.js" />
         <option value="$PROJECT_DIR$/src/public/utils/renderUtils.js" />
         <option value="$PROJECT_DIR$/src/services/spawnManager.js" />
         <option value="$PROJECT_DIR$/src/models/game/probeE.js" />
-        <option value="$PROJECT_DIR$/src/models/game/bulletM.js" />
-        <option value="$PROJECT_DIR$/src/models/game/charge.js" />
         <option value="$PROJECT_DIR$/src/services/probeConstants.js" />
-        <option value="$PROJECT_DIR$/src/public/renders/probeRenderE.js" />
-        <option value="$PROJECT_DIR$/src/models/game/bullet.js" />
         <option value="$PROJECT_DIR$/src/public/app.js" />
         <option value="$PROJECT_DIR$/src/public/scenes/gameScenePrompt.js" />
         <option value="$PROJECT_DIR$/src/public/renders/probeRenderA.js" />
-        <option value="$PROJECT_DIR$/src/models/probe.js" />
-        <option value="$PROJECT_DIR$/src/services/globals.js" />
         <option value="$PROJECT_DIR$/src/controllers/ioHandler.js" />
+        <option value="$PROJECT_DIR$/src/models/game/charge.js" />
         <option value="$PROJECT_DIR$/src/public/renders/probeRenderB.js" />
-        <option value="$PROJECT_DIR$/src/public/renders/common.js" />
         <option value="$PROJECT_DIR$/src/public/renders/probeRenderC.js" />
         <option value="$PROJECT_DIR$/src/public/renders/probeRenderD.js" />
+        <option value="$PROJECT_DIR$/src/public/renders/probeRenderE.js" />
+        <option value="$PROJECT_DIR$/src/models/game/probe1.js" />
+        <option value="$PROJECT_DIR$/src/public/renders/chargeRender.js" />
+        <option value="$PROJECT_DIR$/src/models/game/bullet.js" />
+        <option value="$PROJECT_DIR$/src/models/probe.js" />
+        <option value="$PROJECT_DIR$/src/models/game/bulletM.js" />
         <option value="$PROJECT_DIR$/src/public/scenes/gameSceneMain.js" />
+        <option value="$PROJECT_DIR$/src/public/renders/common.js" />
         <option value="$PROJECT_DIR$/src/services/entityControlService.js" />
+        <option value="$PROJECT_DIR$/src/services/globals.js" />
+        <option value="$PROJECT_DIR$/src/public/index.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="9" />
-    <option name="y" value="44" />
-    <option name="width" value="1476" />
+    <option name="x" value="14" />
+    <option name="y" value="52" />
+    <option name="width" value="1648" />
     <option name="height" value="949" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -228,6 +232,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,7 +262,7 @@
               <item name="electronHunter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="transfer" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="electronHunter" type="b2602c69:ProjectViewProjectNode" />
@@ -277,8 +282,7 @@
               <item name="electronHunter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="probes" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="electronHunter" type="b2602c69:ProjectViewProjectNode" />
@@ -304,7 +308,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -317,19 +320,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2018.3.4\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\jerry\Desktop\electronHunter\src\public\assets" />
-      <recent name="C:\Users\jerry\Desktop\electronHunter\src\models" />
-      <recent name="C:\Users\jerry\Desktop\electronHunter\src\public\assets\probes" />
-      <recent name="C:\Users\jerry\Desktop\electronHunter\src\public\lib" />
-      <recent name="C:\Users\jerry\Desktop\probe\src\public\assets" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jerry\Desktop\electronHunter\src\public\assets\probes" />
       <recent name="C:\Users\jerry\Desktop\electronHunter\src\public\lib" />
       <recent name="C:\Users\jerry\Desktop\probe\src\public\assets" />
       <recent name="C:\Users\jerry\Desktop\probe\src\public\lib" />
       <recent name="C:\Users\jerry\Desktop\probe\src\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jerry\Desktop\electronHunter\src\public\assets" />
+      <recent name="C:\Users\jerry\Desktop\electronHunter\src\public\assets\probes" />
+      <recent name="C:\Users\jerry\Desktop\electronHunter\src\models" />
+      <recent name="C:\Users\jerry\Desktop\electronHunter\src\public\lib" />
+      <recent name="C:\Users\jerry\Desktop\probe\src\public\assets" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -373,18 +376,19 @@
       <workItem from="1577382054782" duration="33334000" />
       <workItem from="1577506886478" duration="17767000" />
       <workItem from="1577557696514" duration="24407000" />
-      <workItem from="1577686666882" duration="11616000" />
+      <workItem from="1577686666882" duration="11884000" />
+      <workItem from="1578112304511" duration="11821000" />
+      <workItem from="1578158540509" duration="915000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238828000" />
+    <option name="totallyTimeSpent" value="251832000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="9" y="44" width="1476" height="949" extended-state="0" />
-    <editor active="true" />
+    <frame x="14" y="52" width="1648" height="949" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2837274" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25341615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -397,8 +401,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.30269608" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4986092" visible="true" weight="0.30269608" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013908" side_tool="true" weight="0.30269608" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -409,55 +413,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="702" column="4" selection-start-line="702" selection-start-column="4" selection-end-line="702" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/matter-attractors/docs/libs/matter-tools.demo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/renders/bulletRender.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="32" column="30" lean-forward="true" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/assets/bulletM.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/renders/bulletMRender.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="34" lean-forward="true" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="77" column="29" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/matter-attractors/docs/libs/matter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -472,24 +427,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/game/probeA.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/game/probeC.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="19" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/renders/chargeRender.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -504,13 +445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/game/wall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -535,31 +469,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/game/bulletM.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="51" column="32" lean-forward="true" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/game/charge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="86" column="31" lean-forward="true" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/services/probeConstants.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
           <caret line="80" column="31" lean-forward="true" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/game/bullet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="42" column="30" lean-forward="true" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -580,20 +493,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/models/transfer/identity.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderE.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5868">
-          <caret line="326" column="45" lean-forward="true" selection-start-line="326" selection-start-column="45" selection-end-line="326" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/renders/leaderBoardRender.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="34" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="12" selection-end-column="34" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/app.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -638,38 +537,10 @@
     <entry file="file://$PROJECT_DIR$/src/public/assets/probes/probeA_base.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/globals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="44" column="25" lean-forward="true" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/ioHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/probe.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderA.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="13" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -679,48 +550,181 @@
     <entry file="file://$PROJECT_DIR$/src/public/assets/probes/probeB_base.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/renders/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="50" lean-forward="true" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/public/assets/probes/probeC_base.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderB.js">
+    <entry file="file://$PROJECT_DIR$/src/controllers/ioHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="12" lean-forward="true" selection-start-line="5" selection-start-column="12" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="198">
+          <caret line="11" column="55" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderC.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="126">
+          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderD.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="165" column="36" lean-forward="true" selection-start-line="165" selection-start-column="36" selection-end-line="165" selection-end-column="36" />
+        <state relative-caret-position="270">
+          <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/assets/probes/probeE_base.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/game/probe1.js" />
+    <entry file="file://$PROJECT_DIR$/src/public/renders/chargeRender.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="36" column="29" lean-forward="true" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/probe.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="92" column="32" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/game/bullet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="78" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/game/bulletM.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="423" column="4" selection-start-line="423" selection-start-column="4" selection-end-line="423" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/renders/leaderBoardRender.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" column="34" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="12" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/lib/bootstrap.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="37" lean-forward="true" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/game/charge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="59" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/matter-attractors/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="97" column="4" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/matter-attractors/build/matter-attractors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/game/probeA.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="11" column="61" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderA.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="70" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/renders/probeRenderE.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2916">
+          <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/scenes/gameSceneMain.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
+        <state relative-caret-position="3312">
+          <caret line="184" column="48" lean-forward="true" selection-start-line="184" selection-start-column="48" selection-end-line="184" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/renders/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3528">
+          <caret line="196" column="49" selection-start-line="196" selection-start-column="49" selection-end-line="196" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/services/entityControlService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="67" column="35" lean-forward="true" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
+        <state relative-caret-position="954">
+          <caret line="53" column="13" lean-forward="true" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/game/wall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="74" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/globals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

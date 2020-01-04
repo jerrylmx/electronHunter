@@ -41,7 +41,7 @@ class EntityControlService {
 
     spawnProbe() {
         setInterval(() => {
-            if (Globals.probeEntities.length < 20) {
+            if (Globals.probeEntities.length < 100) {
                 console.log("Register bot");
                 let id = ++this.seq;
                 let spawnLocation = SpawnService.getSpawnLocation();
@@ -56,6 +56,20 @@ class EntityControlService {
     }
 
     static getRandomProbe(cfg) {
+        switch (cfg.name.toUpperCase()) {
+            case "A":
+                return new ProbeA(cfg);
+            case "B":
+                return new ProbeB(cfg);
+            case "C":
+                return new ProbeC(cfg);
+            case "D":
+                return new ProbeD(cfg);
+            case "E":
+                return new ProbeE(cfg);
+            default:
+                break;
+        }
         cfg = {...cfg, color: Globals.getRandomColor()};
         let rand = Math.random() * 10;
         if (rand < 2) {

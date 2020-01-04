@@ -1,6 +1,10 @@
 const Matter = require("matter-js");
 const Bodies = Matter.Bodies;
 const World = Matter.World;
+const MatterAttractors = require("../../node_modules/matter-attractors/build/matter-attractors");
+Matter.use(MatterAttractors);
+// MatterAttractors.Attractors.gravityConstant = 0.01;
+
 const SERVER_RATE_DEFAULT = 40;
 class Globals {
     static packFrameData(id) {
@@ -72,7 +76,8 @@ class Globals {
             if (n !== 0) {
                 return n;
             }
-            return b.charge - a.charge;
+            let str1 = a.id.toString(), str2 = b.id.toString();
+            return str1.localeCompare(str2);
         }).map((entity) => {
             return [entity.name, entity.kills];
         });
@@ -110,6 +115,28 @@ Globals.probeEntities = [];
 Globals.ranking = [];
 Globals.W = 5000;
 Globals.H = 5000;
+
+
+// for (let i = 0; i < 5; i++) {
+//     for (let j = 0; j < 5; j++) {
+//         let hold = Matter.Bodies.circle(1000*i, 1000*j, 10, {
+//                 isStatic: true,
+//                 mass: 10,
+//                 plugin: {
+//                     attractors: [
+//                         function(bodyA, bodyB) {
+//                             return {
+//                                 x: (bodyA.position.x - bodyB.position.x) * 1e-6,
+//                                 y: (bodyA.position.y - bodyB.position.y) * 1e-6,
+//                             };
+//                         }
+//                     ]
+//                 }
+//             }
+//         );
+//         World.add(Globals.engine.world, [hold]);
+//     }
+// }
 
 
 module.exports = Globals;

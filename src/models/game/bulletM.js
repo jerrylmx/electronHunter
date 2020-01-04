@@ -43,23 +43,28 @@ class BulletM {
         switch (body.render) {
             case "ProbeRenderA":
                 this.destroy();
-                killer && body.charge < 10 && killer.kills++;
+                body.hurt && body.hurt();
+                killer && body.dead && killer.kills++;
                 break;
             case "ProbeRenderB":
                 this.destroy();
-                killer && body.charge < 10 && killer.kills++;
+                body.hurt && body.hurt();
+                killer && body.dead && killer.kills++;
                 break;
             case "ProbeRenderC":
                 this.destroy();
-                killer && body.charge < 10 && killer.kills++;
+                body.hurt && body.hurt();
+                killer && body.dead && killer.kills++;
                 break;
             case "ProbeRenderD":
                 this.destroy();
-                killer && body.charge < 10 && killer.kills++;
+                body.hurt && body.hurt();
+                killer && body.dead && killer.kills++;
                 break;
             case "ProbeRenderE":
                 this.destroy();
-                killer && body.charge < 10 && killer.kills++;
+                body.hurt && body.hurt();
+                killer && body.dead && killer.kills++;
                 break;
             case "ChargeRender":
                 this.destroy();

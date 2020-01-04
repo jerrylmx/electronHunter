@@ -53,8 +53,8 @@ class Charge {
             this.y = myBody.position.y;
         }
 
-        let v = {x: Math.random() - 0.5, y: Math.random() - 0.5};
-        Body.setVelocity(myBody, v);
+        // let v = {x: Math.random() - 0.5, y: Math.random() - 0.5};
+        // Body.setVelocity(myBody, v);
     }
 
     box() {

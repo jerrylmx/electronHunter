@@ -91,10 +91,8 @@ class Probe {
                 this.charge++;
                 break;
             case "BulletRender":
-                this.hurt();
                 break;
             case "BulletMRender":
-                this.hurt();
                 break;
             case "Laser":
                 this.hurt(body.id);

@@ -19,6 +19,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             this.load.image('mask', 'assets/mask1.png');
             this.load.image('shadow', 'assets/shadow.png');
             this.load.image('dot', 'assets/dot.png');
+            this.load.image('charge', 'assets/charge.png');
             this.load.image('fireGlow', 'assets/fireGlow.png');
             this.load.image('bullet', 'assets/bullet.png');
             this.load.image('bulletM', 'assets/bulletM.png');
@@ -37,6 +38,10 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             this.load.image('probeD', 'assets/probes/probeD.png');
             this.load.image('probeD_base', 'assets/probes/probeD_base.png');
             this.load.image('probeE', 'assets/probes/probeE.png');
+            this.load.image('probeE_base', 'assets/probes/probeE_base.png');
+
+            this.load.image('probe1', 'assets/probes/probe1.png')
+
             this.load.image('icon1', 'assets/icon1.png');
             this.load.image('icon2', 'assets/icon2.png');
         }
@@ -156,7 +161,6 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             chargeIcon.setScale(0.05);
             chargeIcon.scrollFactorX = 0;
             chargeIcon.scrollFactorY = 0;
-
 
             let killIcon = scene.add.sprite(110, window.innerHeight - 48, "icon2");
             killIcon.setScale(0.04);

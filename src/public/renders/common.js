@@ -29,7 +29,7 @@ define(['Phaser'], function(Phaser) {
             let base = scene.add.sprite(0, 0, PROBE_TEX_MAP[probeData.render][1]);
             base.depth = 1;
             base.setScale(probeData.r * SCALE_FACTOR);
-            base.tint = probeData.color;
+            base.tint = probeData.color || 0x000000;
 
             // [0x123456, 0x006800, 0x007073, 0x6E3900, 0x640000, 0x4B0078, 0x90014F]
 
@@ -40,7 +40,11 @@ define(['Phaser'], function(Phaser) {
             shadow.alpha = SHADOW_ALPHA;
             shadow.setScale(probeData.r * SCALE_FACTOR + 0.02);
 
-            body.add([shadow, probe, base]);
+            if (probeData.color) {
+                body.add([shadow, probe, base]);
+            } else {
+                body.add([shadow, probe]);
+            }
             return body;
         }
 
@@ -68,7 +72,8 @@ define(['Phaser'], function(Phaser) {
             });
             scene.maskContainer.mask = new Phaser.Display.Masks.BitmapMask(scene, scene.spotlight);
             scene.cameras.main.setBounds(0, 0, window.W, window.H);
-            scene.cameras.main.setZoom(1);
+            scene.cameras.main.setZoom(0.7);
+            scene.cameras.main.zoomTo(1, 500);
             scene.cameras.main.startFollow(phaserBody);
 
             let guide = scene.add.sprite(0, GUIDE_Y, 'arrow');
@@ -114,6 +119,7 @@ define(['Phaser'], function(Phaser) {
                 scene.spotlight.y = render.phaserBody.y;
                 Common.watchKills(render, valDiff.kills, scene);
                 Common.watchDead(valDiff.dead, scene);
+                Common.watchCharge(render, valDiff.charge, scene);
             } else {
                 render.phaserBody.angle = probeData.rotation;
             }
@@ -188,7 +194,37 @@ define(['Phaser'], function(Phaser) {
             }
         }
 
-
-
+        static watchCharge(render, diff, scene) {
+            if (!diff) return;
+            if (diff > 0) {
+                if (!render.animationLock) {
+                    render.animationLock = true;
+                    scene.add.tween({
+                        targets: [render.phaserBody],
+                        alpha: { value: 0.2, duration: 50, ease: 'Power1' },
+                        loop: 0,
+                        yoyo: true,
+                    });
+                    setTimeout(() => {
+                        render.animationLock = false;
+                    }, 200);
+                }
+            } else {
+                if (!render.animationLock) {
+                    scene.cameras.main.shake(1000, 0.005);
+                    render.animationLock = true;
+                    scene.add.tween({
+                        targets: [render.phaserBody],
+                        alpha: {value: 0, duration: 50, ease: 'Power1'},
+                        loop: 0,
+                        repeat: 2,
+                        yoyo: true,
+                    });
+                    setTimeout(() => {
+                        render.animationLock = false;
+                    }, 200);
+                }
+            }
+        }
     }
 })
