@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7dad9de-6690-487f-a7b3-a3cd453f4c14" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/public/assets/charge.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/probes/probe1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/assets/probes/probeE_base.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/game/bullet.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/game/bullet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/game/bulletM.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/game/bulletM.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/game/charge.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/game/charge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/probe.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/probe.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/assets/probes/probeE.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/assets/probes/probeE.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/renders/chargeRender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/chargeRender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/renders/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderB.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderB.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderC.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderC.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderD.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderD.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/renders/probeRenderE.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/renders/probeRenderE.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/scenes/gameSceneMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/scenes/gameSceneMain.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/entityControlService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/entityControlService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/globals.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/globals.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -96,7 +79,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="328">
@@ -105,6 +88,15 @@
                 <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="77" column="43" lean-forward="true" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -182,7 +174,6 @@
         <option value="$PROJECT_DIR$/src/public/renders/bulletRender.js" />
         <option value="$PROJECT_DIR$/src/public/renders/probeRender.js" />
         <option value="$PROJECT_DIR$/src/models/game/probe.js" />
-        <option value="$PROJECT_DIR$/src/server.js" />
         <option value="$PROJECT_DIR$/src/public/renders/bulletMRender.js" />
         <option value="$PROJECT_DIR$/src/models/game/probeC.js" />
         <option value="$PROJECT_DIR$/src/services/rayTestService.js" />
@@ -217,6 +208,7 @@
         <option value="$PROJECT_DIR$/src/services/entityControlService.js" />
         <option value="$PROJECT_DIR$/src/services/globals.js" />
         <option value="$PROJECT_DIR$/src/public/index.html" />
+        <option value="$PROJECT_DIR$/src/server.js" />
       </list>
     </option>
   </component>
@@ -378,17 +370,18 @@
       <workItem from="1577557696514" duration="24407000" />
       <workItem from="1577686666882" duration="11884000" />
       <workItem from="1578112304511" duration="11821000" />
-      <workItem from="1578158540509" duration="915000" />
+      <workItem from="1578158540509" duration="1691000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251832000" />
+    <option name="totallyTimeSpent" value="252608000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="14" y="52" width="1648" height="949" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25341615" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25341615" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -401,7 +394,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4986092" visible="true" weight="0.30269608" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4986092" visible="true" weight="0.30269608" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013908" side_tool="true" weight="0.30269608" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -536,13 +529,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/assets/probes/probeA_base.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/assets/probes/probeB.png">
       <provider selected="true" editor-type-id="images" />
@@ -725,6 +711,13 @@
             <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="77" column="43" lean-forward="true" selection-start-line="77" selection-start-column="43" selection-end-line="77" selection-end-column="43" />
         </state>
       </provider>
     </entry>
