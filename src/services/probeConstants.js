@@ -6,8 +6,8 @@ class ProbeConstants {
                     r: 30,
                     visibility: 5,
                     cd: 30,
-                    speed: 6,
-                    strength: 40,
+                    speed: 7,
+                    strength: 32,
                     ttl: 160,
 
                     // Gain per charge
@@ -23,7 +23,7 @@ class ProbeConstants {
                     r: 30,
                     visibility: 6,
                     cd: 40,
-                    speed: 5,
+                    speed: 6,
                     strength: 40,
                     ttl: 500,
 
@@ -39,8 +39,8 @@ class ProbeConstants {
                     r: 30,
                     visibility: 5,
                     cd: 30,
-                    speed: 6,
-                    strength: 20,
+                    speed: 7,
+                    strength: 16,
                     ttl: 30,
 
                     // Gain per charge
@@ -56,7 +56,7 @@ class ProbeConstants {
                     visibility: 5,
                     cd: 30,
                     speed: 8,
-                    strength: 30,
+                    strength: 24,
                     ttl: 80,
 
                     // Gain per charge
@@ -71,7 +71,7 @@ class ProbeConstants {
                     r: 40,
                     visibility: 8,
                     cd: 40,
-                    speed: 3,
+                    speed: 5,
                     strength: 40,
                     ttl: 500,
 

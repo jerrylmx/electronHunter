@@ -40,11 +40,26 @@ define(['Phaser'], function(Phaser) {
             shadow.alpha = SHADOW_ALPHA;
             shadow.setScale(probeData.r * SCALE_FACTOR + 0.02);
 
-            if (probeData.color) {
-                body.add([shadow, probe, base]);
-            } else {
-                body.add([shadow, probe]);
+            let ring = scene.add.sprite(0, 0, 'ring');
+            ring.setScale(probeData.r * SCALE_FACTOR + 0.02);
+            ring.tint = 0xFF5C5C;
+            ring.alpha = 0;
+            if (probeData.id !== window.socket.id) {
+                ring.alpha = 0.5;
             }
+            scene.add.tween({
+                targets: [ring],
+                scale: { from: probeData.r * SCALE_FACTOR + 0.02, to: probeData.r * SCALE_FACTOR + 0.08, duration: 300, ease: 'Power1' },
+                yoyo: true,
+                repeat: -1
+            });
+
+            if (probeData.color) {
+                body.add([shadow, probe, base, ring]);
+            } else {
+                body.add([shadow, probe, ring]);
+            }
+
             return body;
         }
 
@@ -84,17 +99,30 @@ define(['Phaser'], function(Phaser) {
 
         static renderBaseParticle(scene) {
             let particles = scene.add.particles('flares');
+            // particles.createEmitter({
+            //     // frame: ['white'],
+            //     x: 0,
+            //     y: 0,
+            //     lifespan: 200,
+            //     speed: { min: 100, max: 200 },
+            //     angle: 90,
+            //     tint: [0x99c2ff],
+            //     scale: { start: 0.4, end: 0 },
+            //     quantity: 1,
+            //     frequency: 50,
+            //     blendMode: 'ADD'
+            // });
             particles.createEmitter({
-                frame: ['white'],
+                // frame: ['white'],
                 x: 0,
                 y: 0,
                 lifespan: 200,
-                speed: { min: 100, max: 200 },
+                speed: { min: 50, max: 60 },
                 angle: 90,
                 tint: [0x99c2ff],
-                scale: { start: 0.4, end: 0 },
+                scale: { start: 0.1, end: 0.3 },
                 quantity: 1,
-                frequency: 50,
+                frequency: 10,
                 blendMode: 'ADD'
             });
             particles.setVisible(true);
@@ -123,6 +151,8 @@ define(['Phaser'], function(Phaser) {
             } else {
                 render.phaserBody.angle = probeData.rotation;
             }
+            Common.watchBreak(render, valDiff.breakImpulse, scene);
+            Common.watchShield(render, valDiff.protected, scene);
 
             render.counter && render.counter++;
         }
@@ -159,7 +189,7 @@ define(['Phaser'], function(Phaser) {
                 let msg = render.probeData.kills === 1? `${render.probeData.kills} Kill` : `${render.probeData.kills} Kills`;
                 render.kills && render.kills.destroy();
                 render.kills = scene.add.text(anchorX, anchorY, msg, { fontFamily: '"Verdana"' });
-                render.kills.setOrigin(0.5)
+                render.kills.setOrigin(0.5);
                 render.kills.setAlpha(0);
                 render.kills.scrollFactorX = 0;
                 render.kills.scrollFactorY = 0;
@@ -191,6 +221,40 @@ define(['Phaser'], function(Phaser) {
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
+            }
+        }
+
+        static watchShield(render, diff, scene) {
+            if (!diff) return;
+            if (diff === 1) {
+                let shield = scene.add.sprite(0, 0, 'shield');
+                shield.setScale(render.probeData.r * SCALE_FACTOR + 0.1);
+                shield.name = "S";
+                render.phaserBody.add([shield]);
+                scene.add.tween({
+                    targets: [shield],
+                    alpha: { from: 0, to: 1, duration: 50, ease: 'Power1' }
+                });
+            } else {
+                let shield = render.phaserBody.getByName("S");
+                shield && render.phaserBody.remove(shield);
+            }
+        }
+
+        static watchBreak(render, diff, scene) {
+            if (!diff) return;
+            if (Math.abs(diff)) {
+                console.log("break")
+                let shield = render.phaserBody.getByName("S");
+                if (shield) {
+                    scene.add.tween({
+                        targets: [shield],
+                        alpha: { from: 0, to: 1, duration: 50, ease: 'Power1' },
+                        yoyo: true,
+                        repeat: 5
+                    });
+                    render.phaserBody.remove(shield);
+                }
             }
         }
 

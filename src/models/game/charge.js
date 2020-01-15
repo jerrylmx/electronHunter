@@ -21,28 +21,13 @@ class Charge {
         //     friction: 0,
         //     restitution: 0.5
         // });
-        MatterAttractors.Attractors.gravityConstant = 0.01;
 
         return Bodies.circle(this.x, this.y, 5, {
             mass: 0.001,
             label: this.id,
             force: {x: 0, y: 0},
             friction: 0,
-            restitution: 0.5,
-            // plugin: {
-            //     // attractors: [
-            //     //     function(bodyA, bodyB) {
-            //     //         return {
-            //     //             x: (1 / (bodyA.position.x - bodyB.position.x)) * 1e-2,
-            //     //             y: (1 / (bodyA.position.y - bodyB.position.y)) * 1e-2,
-            //     //         };
-            //     //     }
-            //     // ]
-            //     // MatterAttractors.Attractors.gravity
-            //     attractors: [
-            //         MatterAttractors.Attractors.gravity
-            //     ]
-            // }
+            restitution: 0.5
         });
     }
 

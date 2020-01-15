@@ -20,7 +20,7 @@ class Bullet {
             label: this.id,
             force: {x: 0, y: 0},
             friction: 0,
-            restitution: 0.5
+            restitution: 1
         });
     }
 

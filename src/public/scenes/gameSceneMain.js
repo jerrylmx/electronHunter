@@ -6,6 +6,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
     const PTR_DEBOUNCE_TIME = 50;
     const GAME_CTRL_PTR = "game.move";
     const GAME_FIRE = 'game.fire';
+    const GAME_SHIELD = 'game.shield';
 
 
     return class GameSceneMain extends Phaser.Scene {
@@ -17,10 +18,18 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
         preload() {
             this.load.image('background', 'assets/bk.png');
             this.load.image('mask', 'assets/mask1.png');
+            this.load.image('block', 'assets/block.png');
             this.load.image('shadow', 'assets/shadow.png');
+            this.load.image('ring', 'assets/ring.png');
+            this.load.image('circle', 'assets/circle.png');
             this.load.image('dot', 'assets/dot.png');
+            this.load.image('jet', 'assets/jet.png');
+            this.load.image('shield', 'assets/shield.png');
             this.load.image('charge', 'assets/charge.png');
             this.load.image('fireGlow', 'assets/fireGlow.png');
+            this.load.image('attack', 'assets/attack.png');
+            this.load.image('shieldIcon', 'assets/shieldIcon.png');
+            this.load.image('cover', 'assets/cover.png');
             this.load.image('bullet', 'assets/bullet.png');
             this.load.image('bulletM', 'assets/bulletM.png');
             this.load.image('laser', 'assets/laser.png');
@@ -68,6 +77,33 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
 
             that.mdiff = new Mdiff({});
 
+            let block1 = that.add.sprite(W/4, H*3/4, 'block');
+            let block2 = that.add.sprite(W/4, H/4, 'block');
+            let block3 = that.add.sprite(W*3/4, H/4, 'block');
+            let block4 = that.add.sprite(W*3/4, H*3/4, 'block');
+
+            block1.scrollFactorX = 0.9;
+            block1.scrollFactorY = 0.9;
+            block1.setScale(1.5);
+            block1.alpha = 0.5;
+
+            block2.scrollFactorX = 0.9;
+            block2.scrollFactorY = 0.9;
+            block2.setScale(1.5);
+            block2.alpha = 0.5;
+
+            block3.scrollFactorX = 0.9;
+            block3.scrollFactorY = 0.9;
+            block3.setScale(1.5);
+            block3.alpha = 0.5;
+
+            block4.scrollFactorX = 0.9;
+            block4.scrollFactorY = 0.9;
+            block4.setScale(1.5);
+            block4.alpha = 0.5;
+
+            that.maskContainer.add([block1, block2, block3, block4]);
+
             window.socket.on(GAME_SYNC, function (data) {
                 let bufView = new Uint8Array(data);
                 data = msgpack.decode(bufView);
@@ -105,14 +141,13 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             let pointer = this.input.activePointer;
             if (pointer.rightButtonDown() && !this.rightDown) {
                 console.log("R");
+                window.socket.emit(GAME_SHIELD, {id: window.socket.id});
                 this.rightDown = true;
             }
             // Click
             if (pointer.leftButtonDown() && !this.leftDown) {
                 if (!window.me) return;
                 window.socket.emit(GAME_FIRE, {id: window.socket.id});
-
-
                 this.leftDown = true;
             }
 
@@ -159,13 +194,46 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
 
             let chargeIcon = scene.add.sprite(50, window.innerHeight - 50, "icon1");
             chargeIcon.setScale(0.05);
+            chargeIcon.alpha = 0.6;
             chargeIcon.scrollFactorX = 0;
             chargeIcon.scrollFactorY = 0;
 
             let killIcon = scene.add.sprite(110, window.innerHeight - 48, "icon2");
             killIcon.setScale(0.04);
+            killIcon.alpha = 0.6;
             killIcon.scrollFactorX = 0;
             killIcon.scrollFactorY = 0;
+
+            let attackIcon = scene.add.sprite(window.innerWidth - 250, window.innerHeight - 45, "attack");
+            attackIcon.setScale(0.05);
+            attackIcon.alpha = 0.8;
+            attackIcon.scrollFactorX = 0;
+            attackIcon.scrollFactorY = 0;
+            attackIcon.setOrigin(1);
+
+            let shieldIcon = scene.add.sprite(window.innerWidth - 200, window.innerHeight - 45, "shieldIcon");
+            shieldIcon.setScale(0.05);
+            shieldIcon.alpha = 0.8;
+            shieldIcon.scrollFactorX = 0;
+            shieldIcon.scrollFactorY = 0;
+            shieldIcon.setOrigin(1);
+
+            scene.attackCover = scene.add.sprite(window.innerWidth - 250, window.innerHeight - 45, "cover");
+            scene.attackCover.setScale(0.05);
+            scene.attackCover.scaleY = 0.02;
+            scene.attackCover.alpha = 0.8;
+            scene.attackCover.scrollFactorX = 0;
+            scene.attackCover.scrollFactorY = 0;
+            scene.attackCover.setOrigin(1);
+
+            scene.shieldCover = scene.add.sprite(window.innerWidth - 200, window.innerHeight - 45, "cover");
+            scene.shieldCover.setScale(0.05);
+            scene.shieldCover.scaleY = 0.02;
+            scene.shieldCover.alpha = 0.8;
+            scene.shieldCover.scrollFactorX = 0;
+            scene.shieldCover.scrollFactorY = 0;
+            scene.shieldCover.setOrigin(1);
+
 
             scene.charge = scene.add.text(60, window.innerHeight - 55, "0");
             scene.charge.scrollFactorX = 0;
@@ -189,6 +257,8 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             scene.lb.update(scene.frame.ranking, scene);
             scene.charge.setText(window.me.probeData.charge);
             scene.kill.setText(window.me.probeData.kills);
+            scene.attackCover.scaleY = 0.05 * me.probeData.shootCd / me.probeData.shootCdMax;
+            scene.shieldCover.scaleY = 0.05 * me.probeData.shieldCd / 80;
         }
 
         static parse(entities) {
@@ -206,8 +276,13 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
                 'dead',
                 'charge',
                 'fireImpulse',
+                'breakImpulse',
                 'visibility',
                 'render',
+                'protected',
+                'shootCd',
+                'shootCdMax',
+                'shieldCd',
                 'laserState',
                 'hidden',
                 'ttl',

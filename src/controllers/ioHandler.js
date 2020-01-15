@@ -8,7 +8,6 @@ class IOHandler {
     static gameJoin(data) {
         let spawnLocation = SpawnService.getSpawnLocation();
         let cfg = {...spawnLocation, ...data};
-        let rand = Math.floor(Math.random() * 10);
         let probe = EntityControlService.getRandomProbe(cfg);
         Globals.entities[data.id] = probe;
         Globals.probeCount++;
@@ -20,7 +19,6 @@ class IOHandler {
         target && target.destroy();
     }
 
-
     static gameMove(data) {
         let target = Globals.entities[data.id];
         target && target.move(data.direction);
@@ -29,6 +27,11 @@ class IOHandler {
     static gameFire(data) {
         let target = Globals.entities[data.id];
         target && target.fire();
+    }
+
+    static gameShield(data) {
+        let target = Globals.entities[data.id];
+        target && target.shield()
     }
 
     static log(handler, payload=[]) {

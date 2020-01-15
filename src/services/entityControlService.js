@@ -41,7 +41,7 @@ class EntityControlService {
 
     spawnProbe() {
         setInterval(() => {
-            if (Globals.probeEntities.length < 100) {
+            if (Globals.probeEntities.length < 40) {
                 console.log("Register bot");
                 let id = ++this.seq;
                 let spawnLocation = SpawnService.getSpawnLocation();

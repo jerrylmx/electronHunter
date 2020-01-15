@@ -6,7 +6,8 @@ const World = Matter.World,
 const Utils = require("../services/utils");
 const ProbeConstants = require("../services/probeConstants")
 // const EntityControlService = require("../services/entityControlService")
-const Charge = require("./game/charge")
+const Charge = require("./game/charge");
+const BotService = require("../bot/BotService");
 
 class Probe {
     constructor(config, type = "") {
@@ -15,6 +16,7 @@ class Probe {
 
         this.visibility = this.cfg.visibility;
         this.shootCd = this.cfg.cd;
+        this.shieldCd = 80;
         this.speed = this.cfg.speed;
         this.strength = this.cfg.strength;
         this.ttl = this.cfg.ttl;
@@ -29,9 +31,12 @@ class Probe {
         this.rotation = Math.atan2(1, 0) * 180 / Math.PI + 90;
         this.kills = 0;
         this.dead = 0;
+        this.protected = 0;
         this.charge = 1;
         this.fireImpulse = 0;
+        this.breakImpulse = 0;
         this.isBot = config.isBot || false;
+        this.AI = this.isBot? new BotService(this) : null;
         Globals.probeEntities.push(this);
     }
 
@@ -45,16 +50,11 @@ class Probe {
 
         // Cd sync
         this.shootCd > 0 && this.shootCd--;
+        this.shieldCd > 0 && this.shieldCd--;
 
 
         if (this.isBot && Math.random() < 0.01) {
             this.fire();
-        }
-
-        if (this.isBot && Math.random() > 0.9) {
-            let randX = Math.random() - 0.5;
-            let randY = Math.random() - 0.5;
-            this.move({x: randX, y: randY});
         }
 
         this.visibility = this.cfg.visibility + this.charge * this.cfg.deltaVisibility;
@@ -62,6 +62,7 @@ class Probe {
         this.speed = this.cfg.speed + this.charge * this.cfg.deltaSpeed;
         this.strength = this.cfg.strength + this.charge * this.cfg.deltaStrength;
         this.ttl = this.cfg.ttl + this.charge * this.cfg.deltaTtl;
+        this.AI && this.AI.process();
         return myBody;
     }
 
@@ -72,6 +73,13 @@ class Probe {
 
     hurt(kid) {
         let that = this;
+        if (this.protected) {
+            setTimeout(() => {
+                that.protected = 0;
+            }, 100);
+            this.breakImpulse = 1 - this.breakImpulse;
+            return;
+        }
         if (this.charge < 10) {
             this.dead = 1;
             // Reward killer
@@ -79,7 +87,7 @@ class Probe {
             killer && killer.kills++;
             setTimeout(() => {
                 that.destroy();
-            }, 100);
+            }, 300);
         } else {
             this.charge = Math.ceil(this.charge / 2);
         }
@@ -101,6 +109,19 @@ class Probe {
                 break;
         }
     }
+
+    shield() {
+        if (this.shieldCd > 0) {
+            return;
+        } else {
+            this.protected = 1;
+            this.shieldCd = 80;
+            setTimeout(() => {
+                this.protected = 0;
+            }, 1000);
+        }
+    }
+
 
     destroy() {
         let target = Globals.entities[this.id];

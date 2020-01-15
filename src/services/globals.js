@@ -2,8 +2,8 @@ const Matter = require("matter-js");
 const Bodies = Matter.Bodies;
 const World = Matter.World;
 const MatterAttractors = require("../../node_modules/matter-attractors/build/matter-attractors");
+const Utils = require("./utils");
 Matter.use(MatterAttractors);
-// MatterAttractors.Attractors.gravityConstant = 0.01;
 
 const SERVER_RATE_DEFAULT = 40;
 class Globals {
@@ -24,7 +24,7 @@ class Globals {
         Object.keys(Globals.entities).forEach((key) => {
             let target = Globals.entities[key];
             if (target && target.x && target.y)  {
-                let dist = Globals.dist(center, target);
+                let dist = Utils.dist(center, target);
                 if (dist < 800) {
                     frame.entities[key] = Globals.compressEntity(target);
                 }
@@ -55,19 +55,20 @@ class Globals {
             entity.dead,
             entity.charge,
             entity.fireImpulse,
+            entity.breakImpulse,
             entity.visibility,
             entity.render,
+            entity.protected,
+            entity.shootCd,
+            entity.cfg? entity.cfg.cd : null,
+            entity.shieldCd,
 
             // Specials
             entity.laserState,
             entity.hidden,
             entity.ttl,
             entity.acc
-        ]
-    }
-
-    static dist (a, b) {
-        return Math.sqrt(Math.pow(a.x-b.x,2) + Math.pow(a.y-b.y,2));
+        ];
     }
 
     static getTop5 () {
@@ -94,9 +95,29 @@ class Globals {
 
     }
 
+    static updateGrid(entity) {
+        if (!entity.x || !entity.y) return;
+        const xInd = Math.floor(entity.x / Globals.GridWidth);
+        const yInd = Math.floor(entity.y / Globals.GridWidth);
+        let grid = Globals.grid[yInd][xInd];
+        // grid[entity.id] &&
+
+    }
+
+    static pushEntity(id, entity) {
+        Globals.entities[id] = entity;
+    }
+
+    static removeEntiy(id) {
+        delete Globals.entities[id];
+    }
 }
+
+// Create matter engine
 Globals.engine = Matter.Engine.create();
 Globals.engine.world.gravity = { x: 0, y: 0, scale: 0.5 };
+
+// Subscribe for collision events
 Matter.Events.on(Globals.engine, "collisionStart", ({ pairs }) => {
     pairs.forEach(({ bodyA, bodyB }) => {
         let modelA = Globals.entities[bodyA.label];
@@ -108,6 +129,7 @@ Matter.Events.on(Globals.engine, "collisionStart", ({ pairs }) => {
     });
 });
 
+// Server side storage
 Globals.SERVER_RATE = process.env.SERVER_RATE || SERVER_RATE_DEFAULT;
 Globals.entities = {};
 Globals.probeCount = 0;
@@ -115,28 +137,11 @@ Globals.probeEntities = [];
 Globals.ranking = [];
 Globals.W = 5000;
 Globals.H = 5000;
+Globals.GridWidth = 500;
 
+// Grids
+Globals.grid = Utils.initEntityGrid();
 
-// for (let i = 0; i < 5; i++) {
-//     for (let j = 0; j < 5; j++) {
-//         let hold = Matter.Bodies.circle(1000*i, 1000*j, 10, {
-//                 isStatic: true,
-//                 mass: 10,
-//                 plugin: {
-//                     attractors: [
-//                         function(bodyA, bodyB) {
-//                             return {
-//                                 x: (bodyA.position.x - bodyB.position.x) * 1e-6,
-//                                 y: (bodyA.position.y - bodyB.position.y) * 1e-6,
-//                             };
-//                         }
-//                     ]
-//                 }
-//             }
-//         );
-//         World.add(Globals.engine.world, [hold]);
-//     }
-// }
 
 
 module.exports = Globals;

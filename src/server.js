@@ -54,6 +54,11 @@ io.on('connection', function(socket) {
         IoController.gameFire(data);
     });
 
+    // {id: ...}
+    socket.on("game.shield", (data) => {
+        IoController.gameShield(data);
+    });
+
 });
 
 
@@ -86,6 +91,8 @@ setInterval(function () {
     console.log(`ServerCost: ${serverCost}`);
 }, 10000);
 
+
+// Entity control
 let entityCtrl = new EntityControlService();
 entityCtrl.start();
 
