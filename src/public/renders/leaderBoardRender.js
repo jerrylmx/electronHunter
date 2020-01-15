@@ -30,9 +30,15 @@ define([], function() {
             for (let i = 0; i < ranking.length; i++) {
                 if (i < 5) {
                     let text = ranking[i][0] + "  " +   ranking[i][1] + "kills";
-                    let row = `${i}.  ${text}`;
+                    let row = `${i+1}.  ${text}`;
                     if (row !== this.phaserBody.getAll()[i+1]._text) {
                         this.phaserBody.getAll()[i+1].setText(row);
+                    }
+
+                    if (window.me && ranking[i][2] === window.me.probeData.id) {
+                        this.phaserBody.getAll()[i+1].setColor('#ffff00');
+                    } else {
+                        this.phaserBody.getAll()[i+1].setColor('#ffffff');
                     }
 
                 }

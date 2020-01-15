@@ -82,7 +82,6 @@ define(['Phaser'], function(Phaser) {
                 alpha: 0
             });
             crown.setName('crown');
-
             infoBox.add([namePlate, crown]);
             return infoBox;
         }

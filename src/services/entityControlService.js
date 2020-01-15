@@ -40,6 +40,7 @@ class EntityControlService {
     }
 
     spawnProbe() {
+        let EMOJI = ['😀','😁','😂','🤣','😃','😄','😅','😆','😉','😊','😋','😎','😍','😘','🥰','😌','😛','😜','😝','🤤','😒'];
         setInterval(() => {
             if (Globals.probeEntities.length < 40) {
                 console.log("Register bot");
@@ -47,7 +48,7 @@ class EntityControlService {
                 let spawnLocation = SpawnService.getSpawnLocation();
                 let cfg = {...spawnLocation,
                            id: id,
-                           name: "BOT " + id,
+                           name: "I'M BOT #" + id + EMOJI[Math.floor(Math.random() * EMOJI.length)],
                            isBot: true
                 };
                 Globals.entities[id] = EntityControlService.getRandomProbe(cfg);
