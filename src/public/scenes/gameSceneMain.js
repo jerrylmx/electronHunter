@@ -32,6 +32,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             this.load.image('cover', 'assets/cover.png');
             this.load.image('bullet', 'assets/bullet.png');
             this.load.image('bulletM', 'assets/bulletM.png');
+            this.load.image('crown', 'assets/crown.png');
             this.load.image('laser', 'assets/laser.png');
             this.load.image('laser2', 'assets/laser2.png');
             this.load.atlas('flares', 'assets/flares.png', 'assets/flares.json');
@@ -266,6 +267,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
             let syntax = [
                 'id',
                 'name',
+                'isTop',
                 'r',
                 'color',
                 'x',

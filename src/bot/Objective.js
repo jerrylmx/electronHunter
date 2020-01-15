@@ -37,6 +37,7 @@ class Objective {
             let entity = Globals.probeEntities[i];
             if (entity.render && entity.render.startsWith("ProbeRender") && entity.id !== me.id) {
                 if (Utils.dist({x: me.x, y: me.y}, {x: entity.x, y: entity.y}) < th) {
+                    if (entity.hidden) continue;
                     return new Objective("A", me, entity, 1);
                 }
             }

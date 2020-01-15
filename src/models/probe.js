@@ -31,6 +31,7 @@ class Probe {
         this.rotation = Math.atan2(1, 0) * 180 / Math.PI + 90;
         this.kills = 0;
         this.dead = 0;
+        this.isTop = false;
         this.protected = 0;
         this.charge = 1;
         this.fireImpulse = 0;

@@ -73,7 +73,17 @@ define(['Phaser'], function(Phaser) {
             namePlate.setAlpha(NAME_PLATE_ALPHA);
             namePlate.setOrigin(0.5);
 
-            infoBox.add([namePlate]);
+            let crown = scene.make.sprite({
+                x: 0,
+                y: NAME_PLATE_Y - 20,
+                key: 'crown',
+                add: false,
+                scale: 0.05,
+                alpha: 0
+            });
+            crown.setName('crown');
+
+            infoBox.add([namePlate, crown]);
             return infoBox;
         }
 
@@ -153,6 +163,11 @@ define(['Phaser'], function(Phaser) {
             }
             Common.watchBreak(render, valDiff.breakImpulse, scene);
             Common.watchShield(render, valDiff.protected, scene);
+
+            let crown = render.infoBody.getByName("crown");
+            if (crown) {
+                crown.alpha = probeData.isTop? 1:0;
+            }
 
             render.counter && render.counter++;
         }

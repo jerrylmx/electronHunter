@@ -45,6 +45,7 @@ class Globals {
             // Common
             entity.id,
             entity.name,
+            entity.isTop,
             entity.r,
             entity.color,
             entity.x,
@@ -80,8 +81,14 @@ class Globals {
             let str1 = a.id.toString(), str2 = b.id.toString();
             return str1.localeCompare(str2);
         }).map((entity) => {
-            return [entity.name, entity.kills];
+            entity.isTop = false;
+            return [entity.name, entity.kills, entity.id];
         });
+        for (let i = 0; i < Math.min(sorted.length, 5); i++) {
+            if (Globals.entities[sorted[i][2]]) {
+                Globals.entities[sorted[i][2]].isTop = true;
+            }
+        }
         if (sorted.length > 5) {
             return [sorted[0], sorted[1], sorted[2], sorted[3], sorted[4]]
         } else {
