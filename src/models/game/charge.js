@@ -9,6 +9,7 @@ class Charge {
         this.id = config.id;
         this.x = config.x;
         this.y = config.y;
+        this.ttl = 2000;
         this.render = "ChargeRender";
         World.add(Globals.engine.world, [this.createBody()]);
     }
@@ -37,7 +38,10 @@ class Charge {
             this.x = myBody.position.x;
             this.y = myBody.position.y;
         }
-
+        this.ttl--;
+        if (this.ttl <= 0) {
+            this.destroy();
+        }
         // let v = {x: Math.random() - 0.5, y: Math.random() - 0.5};
         // Body.setVelocity(myBody, v);
     }
@@ -54,29 +58,23 @@ class Charge {
         switch (body.render) {
             case "ProbeRenderA":
                 this.destroy();
-                delete Globals.entities[this.id];
                 break;
             case "ProbeRenderB":
                 this.destroy();
-                delete Globals.entities[this.id];
                 break;
             case "ProbeRenderC":
                 this.destroy();
-                delete Globals.entities[this.id];
                 break;
             case "ProbeRenderD":
                 this.destroy();
-                delete Globals.entities[this.id];
                 break;
             case "ProbeRenderE":
                 this.destroy();
-                delete Globals.entities[this.id];
                 break;
             case "ChargeRender":
                 break;
             case "Laser":
                 this.destroy();
-                delete Globals.entities[this.id];
                 break;
             default:
                 break;
@@ -88,6 +86,7 @@ class Charge {
         if (myBody) {
             Matter.Composite.remove(Globals.engine.world, myBody);
         }
+        delete Globals.entities[this.id];
     }
 }
 
