@@ -1,8 +1,8 @@
 define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'leaderBoardRender'],
     function($, Phaser, Mdiff, RenderFactory, msgpack, Fmanager, LeaderBoardRender){
     const GAME_SYNC = 'game.resp.sync';
-    const W = 5000;
-    const H = 5000;
+    const W = 300;
+    const H = 300;
     const PTR_DEBOUNCE_TIME = 50;
     const GAME_CTRL_PTR = "game.move";
     const GAME_FIRE = 'game.fire';
@@ -78,32 +78,33 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
 
             that.mdiff = new Mdiff({});
 
-            let block1 = that.add.sprite(W/4, H*3/4, 'block');
-            let block2 = that.add.sprite(W/4, H/4, 'block');
-            let block3 = that.add.sprite(W*3/4, H/4, 'block');
-            let block4 = that.add.sprite(W*3/4, H*3/4, 'block');
 
-            block1.scrollFactorX = 0.9;
-            block1.scrollFactorY = 0.9;
-            block1.setScale(1.5);
-            block1.alpha = 0.5;
+            // let block1 = that.add.sprite(W/4, H*3/4, 'block');
+            // let block2 = that.add.sprite(W/4, H/4, 'block');
+            // let block3 = that.add.sprite(W*3/4, H/4, 'block');
+            // let block4 = that.add.sprite(W*3/4, H*3/4, 'block');
+            //
+            // block1.scrollFactorX = 0.9;
+            // block1.scrollFactorY = 0.9;
+            // block1.setScale(1.5);
+            // block1.alpha = 0.5;
+            //
+            // block2.scrollFactorX = 0.9;
+            // block2.scrollFactorY = 0.9;
+            // block2.setScale(1.5);
+            // block2.alpha = 0.5;
+            //
+            // block3.scrollFactorX = 0.9;
+            // block3.scrollFactorY = 0.9;
+            // block3.setScale(1.5);
+            // block3.alpha = 0.5;
+            //
+            // block4.scrollFactorX = 0.9;
+            // block4.scrollFactorY = 0.9;
+            // block4.setScale(1.5);
+            // block4.alpha = 0.5;
 
-            block2.scrollFactorX = 0.9;
-            block2.scrollFactorY = 0.9;
-            block2.setScale(1.5);
-            block2.alpha = 0.5;
-
-            block3.scrollFactorX = 0.9;
-            block3.scrollFactorY = 0.9;
-            block3.setScale(1.5);
-            block3.alpha = 0.5;
-
-            block4.scrollFactorX = 0.9;
-            block4.scrollFactorY = 0.9;
-            block4.setScale(1.5);
-            block4.alpha = 0.5;
-
-            that.maskContainer.add([block1, block2, block3, block4]);
+            // that.maskContainer.add([block1, block2, block3, block4]);
 
             window.socket.on(GAME_SYNC, function (data) {
                 let bufView = new Uint8Array(data);
@@ -139,6 +140,7 @@ define(['jQuery', 'Phaser', 'mdiff', 'renderFactory', 'msgpack', 'fmanager', 'le
         }
 
         update() {
+            this.bg.tilePositionX += 10;
             let pointer = this.input.activePointer;
             if (pointer.rightButtonDown() && !this.rightDown) {
                 console.log("R");

@@ -94,7 +94,7 @@ setInterval(function () {
 
 // Entity control
 let entityCtrl = new EntityControlService();
-entityCtrl.start();
+// entityCtrl.start();
 
 // Boundary
 Globals.entities["topWall"] = new Wall({id: "topWall", type: "T"});
